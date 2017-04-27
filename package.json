@@ -13,12 +13,14 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "flow": "node_modules/.bin/flow"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "babel-eslint": "^7.2.3",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
@@ -26,6 +28,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "expo": "^16.0.0",
+    "flow-bin": "^0.40.0",
     "react": "16.0.0-alpha.6",
     "react-native": "^0.43.4"
   }
