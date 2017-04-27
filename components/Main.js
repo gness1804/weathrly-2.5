@@ -24,19 +24,28 @@ class Main extends Component {
       weather: [],
       location: '',
       state: '',
-      zip: null,
+      zip: '',
       view: 'us-city-state',
       showTopPart: true,
     }
   }
 
-  componentDidMount() {
-    AsyncStorage.getItem('city').then((city) => { this.setState({ location: city }) })
-    AsyncStorage.getItem('state').then((state) => { this.setState({ state }) })
-    AsyncStorage.getItem('zip').then((zip) => { this.setState({ zip }) })
+  state: {
+      weather: Array<Object>,
+      location: string,
+      state: string,
+      zip: string,
+      view: string,
+      showTopPart: boolean,
   }
 
-  getWeather = () => {
+  componentDidMount(): void {
+    AsyncStorage.getItem('city').then((city: string):void => { this.setState({ location: city }) })
+    AsyncStorage.getItem('state').then((state: string):void => { this.setState({ state }) })
+    AsyncStorage.getItem('zip').then((zip: string):void => { this.setState({ zip }) })
+  }
+
+  getWeather = (): void => {
     if (this.state.view === 'us-city-state') {
       const city = this.state.location.toLowerCase();
       const state = this.state.state;
@@ -46,12 +55,12 @@ class Main extends Component {
         return
       }
       axios.get(url)
-      .then((data) => {
+      .then((data: Object): void => {
         this.setState({ weather: data.data.forecast.txt_forecast.forecastday })
       })
-      .then(() => { this.setState({ showTopPart: false }) })
-      .then(() => { AsyncStorage.setItem('city', city) })
-      .then(() => { AsyncStorage.setItem('state', state) })
+      .then((): void => { this.setState({ showTopPart: false }) })
+      .then((): void => { AsyncStorage.setItem('city', city) })
+      .then((): void => { AsyncStorage.setItem('state', state) })
     }
 
     if (this.state.view === 'us-zip') {
@@ -62,15 +71,15 @@ class Main extends Component {
         return
       }
       axios.get(url)
-      .then((data) => {
+      .then((data: Object): void => {
         this.setState({ weather: data.data.forecast.txt_forecast.forecastday })
       })
-      .then(() => { this.setState({ showTopPart: false }) })
-      .then(() => { AsyncStorage.setItem('zip', zipCode) })
+      .then((): void => { this.setState({ showTopPart: false }) })
+      .then((): void => { AsyncStorage.setItem('zip', zipCode) })
     }
   }
 
-  toggleInputsView = () => {
+  toggleInputsView = (): void => {
     this.setState({ showTopPart: !this.state.showTopPart });
   }
 
@@ -165,7 +174,7 @@ class Main extends Component {
     }
 
     if ((view === 'us-city-state' && location) || (view === 'us-zip' && zip)) {
-      list = weather.map((item) => {
+      list = weather.map((item: Object) => {
         return (<WeatherCard
           {...item}
           key={Date.now() * Math.random()}
