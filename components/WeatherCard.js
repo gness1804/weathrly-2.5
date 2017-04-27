@@ -21,4 +21,10 @@ const WeatherCard = ({ ...props }) => {
   );
 }
 
+WeatherCard.propTypes = {
+  icon_url: React.PropTypes.string,
+  title: React.PropTypes.string,
+  fcttext: React.PropTypes.string,
+};
+
 export default WeatherCard;
