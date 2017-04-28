@@ -6,17 +6,30 @@ const styles = {
   },
   container: {
     padding: 20,
+    width: '90%',
   },
   instructions: {
     fontSize: 18,
     marginBottom: 5,
     textAlign: 'center',
   },
+  locationInput: {
+    width: '80%',
+  },
+  locationInputContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
   selectModeText: {
     fontSize: 18,
     marginBottom: 10,
     marginTop: 5,
     textAlign: 'center',
+  },
+  statePicker: {
+    alignSelf: 'center',
+    width: '90%',
   },
   toggleInputsButtons: {
     backgroundColor: 'rgb(12, 56, 221)',

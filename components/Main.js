@@ -102,21 +102,25 @@ class Main extends Component {
           <Text style={styles.instructions}>
             --Choose your city and state (US only)--
           </Text>
-          <TextInput
-            placeholder="City"
-            value={location || ''}
-            onChangeText={(text) => { this.setState({ location: text }) }}
-          />
-          <TouchableOpacity
-            onPress={this.clearLocationState}
-          >
-            <Image
-              source={require('../images/cancel-circle.png')}
+          <View style={styles.locationInputContainer}>
+            <TextInput
+              placeholder="City"
+              value={location || ''}
+              style={styles.locationInput}
+              onChangeText={(text) => { this.setState({ location: text }) }}
             />
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={this.clearLocationState}
+            >
+              <Image
+                source={require('../images/cancel-circle.png')}
+              />
+            </TouchableOpacity>
+          </View>
           <Picker
             selectedValue={state}
             onValueChange={(choice) => { this.setState({ state: choice }) }}
+            style={styles.statePicker}
           >
             <Picker.Item label="Alabama" value="AL" />
             <Picker.Item label="Alaska" value="AK" />
