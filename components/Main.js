@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import WeatherCard from './WeatherCard';
+import WeatherView from './WeatherView'
 import styles from '../styles/main-styles';
 import zipCodeIsValid from '../helpers/zipCodeValidation';
 
@@ -211,7 +212,7 @@ class Main extends Component {
             visible={showWeatherView}
             onRequestClose={() => { this.hideWeatherView() }}
           >
-            {list}
+            <WeatherView />
           </Modal>
         </ScrollView>
       </View>
