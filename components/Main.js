@@ -24,7 +24,7 @@ class Main extends Component {
     this.state = {
       weather: [],
       location: '',
-      state: '',
+      state: 'AL',
       zip: '',
       view: 'us-city-state',
       showWeatherView: false,
