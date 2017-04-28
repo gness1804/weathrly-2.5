@@ -207,6 +207,7 @@ class Main extends Component {
               state={state}
               view={view}
               zip={zip}
+              hideWeatherView={this.hideWeatherView}
             />
           </Modal>
         </ScrollView>

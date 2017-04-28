@@ -1,7 +1,12 @@
 // @flow
 
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native'
+import {
+    ScrollView,
+    Text,
+    View,
+    Button,
+} from 'react-native';
 import WeatherCard from './WeatherCard';
 import styles from '../styles/weather-view-styles'
 
@@ -31,6 +36,7 @@ class WeatherView extends Component {
       state: string,
       view: string,
       zip: string,
+      hideWeatherView: Function,
   }
 
   // thanks to this Stack Overflow post for this function: https://stackoverflow.com/questions/4878756/javascript-how-to-capitalize-first-letter-of-each-word-like-a-2-word-city
@@ -38,6 +44,10 @@ class WeatherView extends Component {
     return location.toLowerCase().replace(/(^| )(\w)/g, (char: string) => {
       return char.toUpperCase();
     });
+  }
+
+  hideWeatherView = (): void => {
+    this.props.hideWeatherView()
   }
 
   render() {
@@ -65,10 +75,16 @@ class WeatherView extends Component {
     }
 
     return (
-      <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.headline}>Your Forecast For: {locale}</Text>
-        {list}
-      </ScrollView>
+        <ScrollView>
+          {list}
+        </ScrollView>
+        <Button
+          title="Back to Home"
+          onPress={this.hideWeatherView}
+        />
+      </View>
     );
   }
 }
