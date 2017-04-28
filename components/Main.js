@@ -11,6 +11,8 @@ import {
   ScrollView,
   Alert,
   Modal,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 import axios from 'axios';
 import WeatherView from './WeatherView'
@@ -101,6 +103,11 @@ class Main extends Component {
             value={location || ''}
             onChangeText={(text) => { this.setState({ location: text }) }}
           />
+          <TouchableOpacity>
+            <Image
+              source={require('../images/cancel-circle.png')}
+            />
+          </TouchableOpacity>
           <Picker
             selectedValue={state}
             onValueChange={(choice) => { this.setState({ state: choice }) }}
