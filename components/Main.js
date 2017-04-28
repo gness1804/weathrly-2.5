@@ -61,6 +61,7 @@ class Main extends Component {
       .then((): void => { this.setState({ showWeatherView: true }) })
       .then((): void => { AsyncStorage.setItem('city', city) })
       .then((): void => { AsyncStorage.setItem('state', state) })
+      .catch((): void => { Alert.alert('There was a problem fetching your data. Please check your entries and try again.') })
     }
 
     if (this.state.view === 'us-zip') {
@@ -76,6 +77,7 @@ class Main extends Component {
       })
       .then((): void => { this.setState({ showWeatherView: true }) })
       .then((): void => { AsyncStorage.setItem('zip', zipCode) })
+      .catch((): void => { Alert.alert('There was a problem fetching your data. Please check your entries and try again.') })
     }
   }
 
