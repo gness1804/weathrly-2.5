@@ -84,6 +84,10 @@ class Main extends Component {
     }
   }
 
+  clearLocationState = (): void => {
+    this.setState({ location: '' })
+  }
+
   hideWeatherView = (): void => {
     this.setState({ showWeatherView: false })
   }
@@ -103,7 +107,9 @@ class Main extends Component {
             value={location || ''}
             onChangeText={(text) => { this.setState({ location: text }) }}
           />
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.clearLocationState}
+          >
             <Image
               source={require('../images/cancel-circle.png')}
             />
