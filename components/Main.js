@@ -11,6 +11,7 @@ import {
   ScrollView,
   Alert,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
 import axios from 'axios';
 import WeatherCard from './WeatherCard';
@@ -27,6 +28,7 @@ class Main extends Component {
       zip: '',
       view: 'us-city-state',
       showTopPart: true,
+      showWeatherView: false,
     }
   }
 
@@ -37,6 +39,7 @@ class Main extends Component {
       zip: string,
       view: string,
       showTopPart: boolean,
+      showWeatherView: boolean,
   }
 
   componentDidMount(): void {
@@ -59,6 +62,7 @@ class Main extends Component {
         this.setState({ weather: data.data.forecast.txt_forecast.forecastday })
       })
       .then((): void => { this.setState({ showTopPart: false }) })
+      .then((): void => { this.setState({ showWeatherView: true }) })
       .then((): void => { AsyncStorage.setItem('city', city) })
       .then((): void => { AsyncStorage.setItem('state', state) })
     }
@@ -75,8 +79,13 @@ class Main extends Component {
         this.setState({ weather: data.data.forecast.txt_forecast.forecastday })
       })
       .then((): void => { this.setState({ showTopPart: false }) })
+      .then((): void => { this.setState({ showWeatherView: true }) })
       .then((): void => { AsyncStorage.setItem('zip', zipCode) })
     }
+  }
+
+  hideWeatherView = (): void => {
+    this.setState({ showWeatherView: false })
   }
 
   toggleInputsView = (): void => {
@@ -84,7 +93,7 @@ class Main extends Component {
   }
 
   render() {
-    const { location, state, weather, view, zip, showTopPart } = this.state
+    const { location, state, weather, view, zip, showTopPart, showWeatherView } = this.state
     let list
     let mode
 
@@ -219,7 +228,12 @@ class Main extends Component {
         <ScrollView
           style={styles.weatherCardsList}
         >
-          {list}
+          <Modal
+            visible={showWeatherView}
+            onRequestClose={() => { this.hideWeatherView() }}
+          >
+            {list}
+          </Modal>
         </ScrollView>
       </View>
     );
