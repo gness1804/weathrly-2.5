@@ -201,6 +201,10 @@ class Main extends Component {
           >
             <WeatherView
               weather={weather}
+              location={location}
+              state={state}
+              view={view}
+              zip={zip}
             />
           </Modal>
         </ScrollView>

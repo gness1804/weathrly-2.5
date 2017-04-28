@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   headline: {
     fontSize: commonElements.headline.fontSize,
     fontWeight: commonElements.headline.fontWeight,
-    marginBottom: commonElements.headline.marginBottom,
+    marginBottom: 30,
     marginTop: commonElements.headline.marginTop,
     textAlign: commonElements.headline.textAlign,
   },

@@ -10,19 +10,37 @@ class WeatherView extends Component {
     super(props);
     this.state = {
       weather: this.props.weather,
+      view: this.props.view,
+      location: this.props.location,
+      state: this.props.state,
+      zip: this.props.zip,
     }
   }
 
   state: {
       weather: Array<Object>,
+      location: string,
+      state: string,
+      view: string,
+      zip: string,
   }
 
   props: {
       weather: Array<Object>,
+      location: string,
+      state: string,
+      view: string,
+      zip: string,
   }
 
   render() {
-    const { weather } = this.state
+    const { weather, view, location, state, zip } = this.state
+    let locale
+    if (view === 'us-city-state') {
+      locale = `${location}, ${state}`
+    } else {
+      locale = `${zip}`
+    }
     const list = weather.map((item: Object) => {
       return (<WeatherCard
         {...item}
@@ -31,7 +49,7 @@ class WeatherView extends Component {
     })
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.headline}>Your Forecast For: </Text>
+        <Text style={styles.headline}>Your Forecast For: {locale}</Text>
         {list}
       </ScrollView>
     );
