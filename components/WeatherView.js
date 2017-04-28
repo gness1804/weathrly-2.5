@@ -33,13 +33,20 @@ class WeatherView extends Component {
       zip: string,
   }
 
+  // thanks to this Stack Overflow post for this function: https://stackoverflow.com/questions/4878756/javascript-how-to-capitalize-first-letter-of-each-word-like-a-2-word-city
+  capitalize = (location: string): string => {
+    return location.toLowerCase().replace(/(^| )(\w)/g, (char: string) => {
+      return char.toUpperCase();
+    });
+  }
+
   render() {
     const { weather, view, location, state, zip } = this.state
     let locale
     let list
 
     if (view === 'us-city-state') {
-      locale = `${location}, ${state}`
+      locale = `${this.capitalize(location)}, ${state}`
     } else {
       locale = `${zip}`
     }
