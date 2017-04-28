@@ -14,6 +14,7 @@ const commonElements = {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
+    marginBottom: 20,
   },
   inputField: {
     marginRight: 20,

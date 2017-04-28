@@ -108,7 +108,7 @@ class Main extends Component {
           </Text>
           <View style={styles.locationInputContainer}>
             <TextInput
-              placeholder="City"
+              placeholder="Enter City"
               value={location || ''}
               style={styles.locationInput}
               onChangeText={(text) => { this.setState({ location: text }) }}
@@ -190,7 +190,7 @@ class Main extends Component {
           </Text>
           <View style={styles.zipInputContainer}>
             <TextInput
-              placeholder="Zip"
+              placeholder="Enter Zip"
               value={zip}
               onChangeText={(text) => { this.setState({ zip: text }) }}
               style={styles.zipInput}
@@ -215,6 +215,7 @@ class Main extends Component {
           <Text style={styles.selectModeText}>Select Mode:</Text>
           <Picker
             selectedValue={view}
+            style={styles.selectModeDropdown}
             onValueChange={(choice) => { this.setState({ view: choice }) }}
           >
             <Picker.Item label="US City and State" value="us-city-state" />

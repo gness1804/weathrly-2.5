@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   },
   instructions: {
     fontSize: 18,
-    marginBottom: 5,
+    fontWeight: '600',
+    marginBottom: 40,
     textAlign: 'center',
   },
   locationInput: {
@@ -24,26 +25,24 @@ const styles = StyleSheet.create({
     alignItems: commonElements.inputContainer.alignItems,
     flexDirection: commonElements.inputContainer.flexDirection,
     justifyContent: commonElements.inputContainer.justifyContent,
+    marginBottom: commonElements.inputContainer.marginBottom,
+  },
+  selectModeDropdown: {
+    marginBottom: 40,
   },
   selectModeText: {
     fontSize: 18,
-    marginBottom: 10,
-    marginTop: 5,
+    fontWeight: '600',
+    marginBottom: 30,
+    marginTop: 20,
     textAlign: 'center',
   },
   statePicker: {
     alignSelf: 'center',
     width: '90%',
   },
-  toggleInputsButtons: {
-    backgroundColor: 'rgb(12, 56, 221)',
-    borderColor: '#000',
-    borderWidth: 1,
-    color: '#FFF',
-    fontSize: 16,
-    marginBottom: 20,
-    marginTop: 15,
-    textAlign: 'center',
+  topPart: {
+    marginTop: 50,
   },
   weatherCardsList: {
     marginBottom: 30,
@@ -61,6 +60,7 @@ const styles = StyleSheet.create({
     alignItems: commonElements.inputContainer.alignItems,
     flexDirection: commonElements.inputContainer.flexDirection,
     justifyContent: commonElements.inputContainer.justifyContent,
+    marginBottom: commonElements.inputContainer.marginBottom,
   },
 })
 
