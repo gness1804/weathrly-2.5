@@ -4,9 +4,8 @@ import commonElements from './commonElements'
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-  },
-  credit: {
-    marginTop: 10,
+    backgroundColor: commonElements.backgroundColor,
+    flex: 1,
   },
   headline: {
     fontSize: commonElements.headline.fontSize,
@@ -14,16 +13,6 @@ const styles = StyleSheet.create({
     marginBottom: commonElements.headline.marginBottom,
     marginTop: commonElements.headline.marginTop,
     textAlign: commonElements.headline.textAlign,
-  },
-  pic: {
-    height: 70,
-    marginTop: 10,
-    width: 100,
-  },
-  tagline: {
-    fontSize: 20,
-    fontStyle: 'italic',
-    textAlign: 'center',
   },
 })
 

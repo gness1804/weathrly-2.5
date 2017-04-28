@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import commonElements from './commonElements'
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    backgroundColor: 'rgb(129, 233, 240)',
+    backgroundColor: commonElements.backgroundColor,
     flex: 1,
   },
 });

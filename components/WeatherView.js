@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { ScrollView, Text } from 'react-native'
 import WeatherCard from './WeatherCard';
+import styles from '../styles/weather-view-styles'
 
 class WeatherView extends Component {
   constructor(props: Object) {
@@ -29,8 +30,8 @@ class WeatherView extends Component {
       />)
     })
     return (
-      <ScrollView>
-        <Text>Your Forecast For: </Text>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.headline}>Your Forecast For: </Text>
         {list}
       </ScrollView>
     );
