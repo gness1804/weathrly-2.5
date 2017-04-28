@@ -88,6 +88,10 @@ class Main extends Component {
     this.setState({ location: '' })
   }
 
+  clearZipState = (): void => {
+    this.setState({ zip: '' })
+  }
+
   hideWeatherView = (): void => {
     this.setState({ showWeatherView: false })
   }
@@ -184,11 +188,21 @@ class Main extends Component {
           <Text style={styles.instructions}>
             --Enter US Zip Code (5 digits only)--
           </Text>
-          <TextInput
-            placeholder="Zip"
-            value={zip}
-            onChangeText={(text) => { this.setState({ zip: text }) }}
-          />
+          <View style={styles.zipInputContainer}>
+            <TextInput
+              placeholder="Zip"
+              value={zip}
+              onChangeText={(text) => { this.setState({ zip: text }) }}
+              style={styles.zipInput}
+            />
+            <TouchableOpacity
+              onPress={this.clearZipState}
+            >
+              <Image
+                source={require('../images/cancel-circle.png')}
+              />
+            </TouchableOpacity>
+          </View>
         </View>)
     }
 

@@ -10,6 +10,15 @@ const commonElements = {
     marginTop: 20,
     textAlign: 'center',
   },
+  inputContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  inputField: {
+    marginRight: 20,
+    width: '80%',
+  },
 }
 
 export default commonElements

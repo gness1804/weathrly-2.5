@@ -1,4 +1,7 @@
-const styles = {
+import { StyleSheet } from 'react-native';
+import commonElements from './commonElements';
+
+const styles = StyleSheet.create({
   clearCity: {
     marginBottom: 20,
     marginTop: 20,
@@ -14,12 +17,13 @@ const styles = {
     textAlign: 'center',
   },
   locationInput: {
-    width: '80%',
+    marginRight: commonElements.inputField.marginRight,
+    width: commonElements.inputField.width,
   },
   locationInputContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: commonElements.inputContainer.alignItems,
+    flexDirection: commonElements.inputContainer.flexDirection,
+    justifyContent: commonElements.inputContainer.justifyContent,
   },
   selectModeText: {
     fontSize: 18,
@@ -49,6 +53,15 @@ const styles = {
     marginTop: 20,
     textAlign: 'center',
   },
-}
+  zipInput: {
+    marginRight: commonElements.inputField.marginRight,
+    width: commonElements.inputField.width,
+  },
+  zipInputContainer: {
+    alignItems: commonElements.inputContainer.alignItems,
+    flexDirection: commonElements.inputContainer.flexDirection,
+    justifyContent: commonElements.inputContainer.justifyContent,
+  },
+})
 
 export default styles
