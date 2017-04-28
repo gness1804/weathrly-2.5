@@ -13,7 +13,6 @@ import {
   Modal,
 } from 'react-native';
 import axios from 'axios';
-import WeatherCard from './WeatherCard';
 import WeatherView from './WeatherView'
 import styles from '../styles/main-styles';
 import zipCodeIsValid from '../helpers/zipCodeValidation';
@@ -86,7 +85,6 @@ class Main extends Component {
 
   render() {
     const { location, state, weather, view, zip, showWeatherView } = this.state
-    let list
     let mode
 
     if (view === 'us-city-state') {
@@ -174,17 +172,6 @@ class Main extends Component {
         </View>)
     }
 
-    if ((view === 'us-city-state' && location) || (view === 'us-zip' && zip)) {
-      list = weather.map((item: Object) => {
-        return (<WeatherCard
-          {...item}
-          key={Date.now() * Math.random()}
-        />)
-      })
-    } else {
-      list = <Text>Please enter in a location.</Text>
-    }
-
     return (
       <View style={styles.container}>
         <View
@@ -212,7 +199,9 @@ class Main extends Component {
             visible={showWeatherView}
             onRequestClose={() => { this.hideWeatherView() }}
           >
-            <WeatherView />
+            <WeatherView
+              weather={weather}
+            />
           </Modal>
         </ScrollView>
       </View>
