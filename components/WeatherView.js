@@ -36,17 +36,27 @@ class WeatherView extends Component {
   render() {
     const { weather, view, location, state, zip } = this.state
     let locale
+    let list
+
     if (view === 'us-city-state') {
       locale = `${location}, ${state}`
     } else {
       locale = `${zip}`
     }
-    const list = weather.map((item: Object) => {
-      return (<WeatherCard
-        {...item}
-        key={Date.now() * Math.random()}
-      />)
-    })
+
+    if (weather) {
+      list = weather.map((item: Object) => {
+        return (<WeatherCard
+          {...item}
+          key={Date.now() * Math.random()}
+        />)
+      })
+    } else {
+      list = (<Text>
+          Loading... (If this takes more than a few seconds, go back to the main view and try again.)
+             </Text>)
+    }
+
     return (
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.headline}>Your Forecast For: {locale}</Text>
