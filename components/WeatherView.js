@@ -10,6 +10,7 @@ import {
 import WeatherCard from './WeatherCard';
 import styles from '../styles/weather-view-styles';
 import commonElements from '../styles/commonElements';
+import capitalize from '../helpers/capitalize'
 
 class WeatherView extends Component {
   constructor(props: Object) {
@@ -41,11 +42,6 @@ class WeatherView extends Component {
   }
 
   // thanks to this Stack Overflow post for this function: https://stackoverflow.com/questions/4878756/javascript-how-to-capitalize-first-letter-of-each-word-like-a-2-word-city
-  capitalize = (location: string): string => {
-    return location.toLowerCase().replace(/(^| )(\w)/g, (char: string) => {
-      return char.toUpperCase();
-    });
-  }
 
   hideWeatherView = (): void => {
     this.props.hideWeatherView()
@@ -57,7 +53,7 @@ class WeatherView extends Component {
     let list
 
     if (view === 'us-city-state') {
-      locale = `${this.capitalize(location)}, ${state}`
+      locale = `${capitalize(location)}, ${state}`
     } else {
       locale = `${zip}`
     }
