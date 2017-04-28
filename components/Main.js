@@ -10,7 +10,6 @@ import {
   Picker,
   ScrollView,
   Alert,
-  TouchableOpacity,
   Modal,
 } from 'react-native';
 import axios from 'axios';
@@ -27,7 +26,6 @@ class Main extends Component {
       state: '',
       zip: '',
       view: 'us-city-state',
-      showTopPart: true,
       showWeatherView: false,
     }
   }
@@ -38,7 +36,6 @@ class Main extends Component {
       state: string,
       zip: string,
       view: string,
-      showTopPart: boolean,
       showWeatherView: boolean,
   }
 
@@ -61,7 +58,6 @@ class Main extends Component {
       .then((data: Object): void => {
         this.setState({ weather: data.data.forecast.txt_forecast.forecastday })
       })
-      .then((): void => { this.setState({ showTopPart: false }) })
       .then((): void => { this.setState({ showWeatherView: true }) })
       .then((): void => { AsyncStorage.setItem('city', city) })
       .then((): void => { AsyncStorage.setItem('state', state) })
@@ -78,7 +74,6 @@ class Main extends Component {
       .then((data: Object): void => {
         this.setState({ weather: data.data.forecast.txt_forecast.forecastday })
       })
-      .then((): void => { this.setState({ showTopPart: false }) })
       .then((): void => { this.setState({ showWeatherView: true }) })
       .then((): void => { AsyncStorage.setItem('zip', zipCode) })
     }
@@ -88,12 +83,8 @@ class Main extends Component {
     this.setState({ showWeatherView: false })
   }
 
-  toggleInputsView = (): void => {
-    this.setState({ showTopPart: !this.state.showTopPart });
-  }
-
   render() {
-    const { location, state, weather, view, zip, showTopPart, showWeatherView } = this.state
+    const { location, state, weather, view, zip, showWeatherView } = this.state
     let list
     let mode
 
@@ -195,7 +186,7 @@ class Main extends Component {
 
     return (
       <View style={styles.container}>
-        {showTopPart && <View
+        <View
           style={styles.topPart}
         >
           {mode}
@@ -212,19 +203,7 @@ class Main extends Component {
             color="rgb(43, 34, 203)"
             onPress={() => { this.getWeather() }}
           />
-        </View>}
-        {showTopPart ?
-          <TouchableOpacity
-            onPress={this.toggleInputsView}
-          >
-            <Text style={styles.toggleInputsButtons}>HIDE INPUTS</Text>
-          </TouchableOpacity>
-          :
-          <TouchableOpacity
-            onPress={this.toggleInputsView}
-          >
-            <Text style={styles.toggleInputsButtons}>SHOW INPUTS</Text>
-          </TouchableOpacity>}
+        </View>
         <ScrollView
           style={styles.weatherCardsList}
         >
