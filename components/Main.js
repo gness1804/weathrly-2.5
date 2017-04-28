@@ -109,6 +109,7 @@ class Main extends Component {
           <View style={styles.locationInputContainer}>
             <TextInput
               placeholder="Enter City"
+              placeholderTextColor={commonElements.placeholder.color}
               value={location || ''}
               style={styles.locationInput}
               onChangeText={(text) => { this.setState({ location: text }) }}
@@ -191,6 +192,7 @@ class Main extends Component {
           <View style={styles.zipInputContainer}>
             <TextInput
               placeholder="Enter Zip"
+              placeholderTextColor={commonElements.placeholder.color}
               value={zip}
               onChangeText={(text) => { this.setState({ zip: text }) }}
               style={styles.zipInput}

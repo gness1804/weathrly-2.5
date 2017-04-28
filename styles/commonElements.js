@@ -20,6 +20,9 @@ const commonElements = {
     marginRight: 20,
     width: '80%',
   },
+  placeholder: {
+    color: '#948989',
+  },
 }
 
 export default commonElements
