@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 15,
     padding: 10,
+    width: '80%',
   },
   forecast: {
     marginBottom: 10,

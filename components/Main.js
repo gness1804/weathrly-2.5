@@ -16,6 +16,7 @@ import axios from 'axios';
 import WeatherView from './WeatherView'
 import styles from '../styles/main-styles';
 import zipCodeIsValid from '../helpers/zipCodeValidation';
+import commonElements from '../styles/commonElements'
 
 class Main extends Component {
   constructor() {
@@ -190,7 +191,7 @@ class Main extends Component {
           </Picker>
           <Button
             title="Get Weather"
-            color="rgb(43, 34, 203)"
+            color={commonElements.button.color}
             onPress={() => { this.getWeather() }}
           />
         </View>

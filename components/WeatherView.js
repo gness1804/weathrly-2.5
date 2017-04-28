@@ -8,7 +8,8 @@ import {
     Button,
 } from 'react-native';
 import WeatherCard from './WeatherCard';
-import styles from '../styles/weather-view-styles'
+import styles from '../styles/weather-view-styles';
+import commonElements from '../styles/commonElements';
 
 class WeatherView extends Component {
   constructor(props: Object) {
@@ -70,20 +71,23 @@ class WeatherView extends Component {
       })
     } else {
       list = (<Text>
-          Loading... (If this takes more than a few seconds, go back to the main view and try again.)
+          Loading... (If this takes more than a few seconds, go back to the home view and try again.)
              </Text>)
     }
 
     return (
       <View style={styles.container}>
         <Text style={styles.headline}>Your Forecast For: {locale}</Text>
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.cardsContainer}>
           {list}
         </ScrollView>
-        <Button
-          title="Back to Home"
-          onPress={this.hideWeatherView}
-        />
+        <View style={styles.homeButton}>
+          <Button
+            title="Back to Home"
+            onPress={this.hideWeatherView}
+            color={commonElements.button.color}
+          />
+        </View>
       </View>
     );
   }

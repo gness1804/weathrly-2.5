@@ -2,6 +2,9 @@ import { StyleSheet } from 'react-native';
 import commonElements from './commonElements'
 
 const styles = StyleSheet.create({
+  cardsContainer: {
+    alignItems: 'center',
+  },
   container: {
     alignItems: 'center',
     backgroundColor: commonElements.backgroundColor,
@@ -13,6 +16,10 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginTop: commonElements.headline.marginTop,
     textAlign: commonElements.headline.textAlign,
+  },
+  homeButton: {
+    marginBottom: 20,
+    marginTop: 20,
   },
 })
 
