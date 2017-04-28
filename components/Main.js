@@ -18,7 +18,8 @@ import axios from 'axios';
 import WeatherView from './WeatherView'
 import styles from '../styles/main-styles';
 import zipCodeIsValid from '../helpers/zipCodeValidation';
-import commonElements from '../styles/commonElements'
+import commonElements from '../styles/commonElements';
+import capitalize from '../helpers/capitalize';
 
 class Main extends Component {
   constructor() {
@@ -43,7 +44,7 @@ class Main extends Component {
   }
 
   componentDidMount(): void {
-    AsyncStorage.getItem('city').then((city: string):void => { this.setState({ location: city }) })
+    AsyncStorage.getItem('city').then((city: string):void => { this.setState({ location: capitalize(city) }) })
     AsyncStorage.getItem('state').then((state: string):void => { this.setState({ state }) })
     AsyncStorage.getItem('zip').then((zip: string):void => { this.setState({ zip }) })
   }
