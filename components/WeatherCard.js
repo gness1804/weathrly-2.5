@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import styles from '../styles/weather-card-styles';
 
-const WeatherCard = ({ ...props }) => {
+const WeatherCard = ({ ...props }: Object) => {
   const { icon_url, title, fcttext } = props
   return (
     <View style={styles.container}>

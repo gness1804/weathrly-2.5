@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 
-const CurrentWeather = ({ ...props }) => {
+const CurrentWeather = ({ ...props }: Object) => {
   const { currentTemp } = props
   return (
     <View>
