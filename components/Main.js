@@ -45,27 +45,7 @@ class Main extends Component {
   }
 
   componentDidMount(): void {
-    AsyncStorage.getItem('city').then((city: string):void => {
-      if (city) {
-        this.setState({ location: capitalize(city) })
-      } else {
-        this.setState({ location: 'Austin' })
-      }
-    })
-    AsyncStorage.getItem('state').then((state: string):void => {
-      if (state) {
-        this.setState({ state })
-      } else {
-        this.setState({ state: 'TX' })
-      }
-    })
-    AsyncStorage.getItem('zip').then((zip: string):void => {
-      if (zip) {
-        this.setState({ zip })
-      } else {
-        this.setState({ zip: '78745' })
-      }
-    })
+    this.fillCityAndStateData()
   }
 
   getWeather = (): void => {
@@ -110,6 +90,30 @@ class Main extends Component {
 
   clearZipState = (): void => {
     this.setState({ zip: '' })
+  }
+
+  fillCityAndStateData = (): void => {
+    AsyncStorage.getItem('city').then((city: string):void => {
+      if (city) {
+        this.setState({ location: capitalize(city) })
+      } else {
+        this.setState({ location: 'Austin' })
+      }
+    })
+    AsyncStorage.getItem('state').then((state: string):void => {
+      if (state) {
+        this.setState({ state })
+      } else {
+        this.setState({ state: 'TX' })
+      }
+    })
+    AsyncStorage.getItem('zip').then((zip: string):void => {
+      if (zip) {
+        this.setState({ zip })
+      } else {
+        this.setState({ zip: '78745' })
+      }
+    })
   }
 
   hideWeatherView = (): void => {
