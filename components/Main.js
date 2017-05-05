@@ -47,10 +47,7 @@ class Main extends Component {
   }
 
   componentDidMount(): void {
-    const promise = new Promise((resolve) => {
-      resolve(this.fillCityAndStateData())
-    })
-    promise.then(() => { this.makeAPICallForCurrentTemp() })
+    this.fillCityAndStateData()
   }
 
   getWeather = (): void => {
@@ -69,6 +66,7 @@ class Main extends Component {
       .then((): void => { this.setState({ showWeatherView: true }) })
       .then((): void => { AsyncStorage.setItem('city', city) })
       .then((): void => { AsyncStorage.setItem('state', state) })
+      .then((): void => { this.makeAPICallForCurrentTemp() })
       .catch((): void => { Alert.alert('There was a problem fetching your data. Please check your entries and try again.') })
     }
 
@@ -111,7 +109,7 @@ class Main extends Component {
       } else {
         this.setState({ state: 'TX' })
       }
-    })
+    }).then((): void => { this.makeAPICallForCurrentTemp() })
     AsyncStorage.getItem('zip').then((zip: string):void => {
       if (zip) {
         this.setState({ zip })
@@ -129,7 +127,7 @@ class Main extends Component {
     const city = this.state.location.toLowerCase();
     const state = this.state.state;
     const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${state}/${city}.json`
-    axios.get(url).then((data) => { 
+    axios.get(url).then((data) => {
       const currentTemp = data.data.current_observation.temp_f
       this.setState({ currentTemp })
     })
@@ -249,9 +247,12 @@ class Main extends Component {
 
     return (
       <ScrollView style={styles.container}>
-        <CurrentWeather
-          currentTemp={currentTemp}
-        />
+        {view === 'us-city-state' &&
+          <CurrentWeather
+            currentTemp={currentTemp}
+            location={location}
+          />
+        }
         <View
           style={styles.topPart}
         >
