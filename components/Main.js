@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import WeatherView from './WeatherView'
+import CurrentWeather from './CurrentWeather'
 import styles from '../styles/main-styles';
 import zipCodeIsValid from '../helpers/zipCodeValidation';
 import commonElements from '../styles/commonElements';
@@ -228,7 +229,8 @@ class Main extends Component {
     }
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <CurrentWeather />
         <View
           style={styles.topPart}
         >
@@ -265,7 +267,7 @@ class Main extends Component {
             />
           </Modal>
         </ScrollView>
-      </View>
+      </ScrollView>
     );
   }
 
