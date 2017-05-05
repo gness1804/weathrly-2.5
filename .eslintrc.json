@@ -3,7 +3,7 @@
   "plugins": [
     "react"
   ],
-  "ecmafeatures":{
+  "ecmafeatures": {
     "arrowFunctions": true
   },
   "env": {

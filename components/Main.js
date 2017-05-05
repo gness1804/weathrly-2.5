@@ -26,8 +26,8 @@ class Main extends Component {
     super()
     this.state = {
       weather: [],
-      location: '',
-      state: 'AL',
+      location: 'Austin',
+      state: 'TX',
       zip: '',
       view: 'us-city-state',
       showWeatherView: false,
@@ -44,9 +44,27 @@ class Main extends Component {
   }
 
   componentDidMount(): void {
-    AsyncStorage.getItem('city').then((city: string):void => { this.setState({ location: capitalize(city) }) })
-    AsyncStorage.getItem('state').then((state: string):void => { this.setState({ state }) })
-    AsyncStorage.getItem('zip').then((zip: string):void => { this.setState({ zip }) })
+    AsyncStorage.getItem('city').then((city: string):void => {
+      if (city) {
+        this.setState({ location: capitalize(city) })
+      } else {
+        this.setState({ location: 'Austin' })
+      }
+    })
+    AsyncStorage.getItem('state').then((state: string):void => {
+      if (state) {
+        this.setState({ state })
+      } else {
+        this.setState({ state: 'TX' })
+      }
+    })
+    AsyncStorage.getItem('zip').then((zip: string):void => {
+      if (zip) {
+        this.setState({ zip })
+      } else {
+        this.setState({ zip: '78745' })
+      }
+    })
   }
 
   getWeather = (): void => {
