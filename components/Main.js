@@ -32,6 +32,7 @@ class Main extends Component {
       zip: '',
       view: 'us-city-state',
       showWeatherView: false,
+      currentTemp: 0,
     }
   }
 
@@ -42,10 +43,14 @@ class Main extends Component {
       zip: string,
       view: string,
       showWeatherView: boolean,
+      currentTemp: number,
   }
 
   componentDidMount(): void {
-    this.fillCityAndStateData()
+    const promise = new Promise((resolve) => {
+      resolve(this.fillCityAndStateData())
+    })
+    promise.then(() => { this.makeAPICallForCurrentTemp() })
   }
 
   getWeather = (): void => {
@@ -120,8 +125,18 @@ class Main extends Component {
     this.setState({ showWeatherView: false })
   }
 
+  makeAPICallForCurrentTemp = (): void => {
+    const city = this.state.location.toLowerCase();
+    const state = this.state.state;
+    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${state}/${city}.json`
+    axios.get(url).then((data) => { 
+      const currentTemp = data.data.current_observation.temp_f
+      this.setState({ currentTemp })
+    })
+  }
+
   render() {
-    const { location, state, weather, view, zip, showWeatherView } = this.state
+    const { location, state, weather, view, zip, showWeatherView, currentTemp } = this.state
     let mode
 
     if (view === 'us-city-state') {
@@ -234,7 +249,9 @@ class Main extends Component {
 
     return (
       <ScrollView style={styles.container}>
-        <CurrentWeather />
+        <CurrentWeather
+          currentTemp={currentTemp}
+        />
         <View
           style={styles.topPart}
         >
