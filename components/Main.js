@@ -71,9 +71,9 @@ class Main extends Component {
     }
 
     if (this.state.view === 'us-zip') {
-      const zipCode = this.state.zip
-      const url = `http://api.wunderground.com/api/47fe8304fc0c9639/forecast/q/${zipCode}.json`
-      if (!zipCodeIsValid(zipCode)) {
+      const { zip } = this.state
+      const url = `http://api.wunderground.com/api/47fe8304fc0c9639/forecast/q/${zip}.json`
+      if (!zipCodeIsValid(zip)) {
         Alert.alert('Error: you must enter a valid five digit US zip code.')
         return
       }
@@ -82,7 +82,7 @@ class Main extends Component {
         this.setState({ weather: data.data.forecast.txt_forecast.forecastday })
       })
       .then((): void => { this.setState({ showWeatherView: true }) })
-      .then((): void => { AsyncStorage.setItem('zip', zipCode) })
+      .then((): void => { AsyncStorage.setItem('zip', zip) })
       .catch((): void => { Alert.alert('There was a problem fetching your data. Please check your entries and try again.') })
     }
   }
