@@ -128,9 +128,14 @@ class Main extends Component {
     const state = this.state.state;
     const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${state}/${city}.json`
     axios.get(url)
-    .then((data) => {
+    .then((data: Object): Object => {
       const currentTemp = data.data.current_observation.temp_f
       this.setState({ currentTemp })
+      return data
+    })
+    .then((data: Object): void => {
+      const zip = data.data.current_observation.display_location.zip
+      this.setState({ zip })
     })
     .catch((err: string): void => { throw new Error(err) })
   }
