@@ -1,5 +1,5 @@
 const commonElements = {
-  backgroundColor: 'rgb(129, 233, 240)',
+  backgroundColor: 'rgb(205, 244, 247)',
   button: {
     color: 'rgb(43, 34, 203)',
   },
