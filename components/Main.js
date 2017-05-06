@@ -83,6 +83,7 @@ class Main extends Component {
       })
       .then((): void => { this.setState({ showWeatherView: true }) })
       .then((): void => { AsyncStorage.setItem('zip', zip) })
+      .then((): void => { this.makeZipAPICall() })
       .catch((): void => { Alert.alert('There was a problem fetching your data. Please check your entries and try again.') })
     }
   }
@@ -134,8 +135,26 @@ class Main extends Component {
       return data
     })
     .then((data: Object): void => {
-      const zip = data.data.current_observation.display_location.zip
+      const { zip } = data.data.current_observation.display_location
       this.setState({ zip })
+    })
+    .catch((err: string): void => { throw new Error(err) })
+  }
+
+  makeZipAPICall = (): void => {
+    const { zip } = this.state
+    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${zip}.json`
+    axios.get(url)
+    .then((data: Object): Object => {
+      const { city } = data.data.current_observation.display_location
+      const { state } = data.data.current_observation.display_location
+      this.setState({ location: city })
+      this.setState({ state })
+      return { city, state }
+    })
+    .then((obj): void => {
+      AsyncStorage.setItem('city', obj.city)
+      AsyncStorage.setItem('state', obj.state)
     })
     .catch((err: string): void => { throw new Error(err) })
   }
