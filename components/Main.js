@@ -133,6 +133,17 @@ class Main extends Component {
     })
   }
 
+  thereIsData = (): boolean => {
+    const { view, location } = this.state
+    let result
+    if (view === 'us-city-state' && location) {
+      result = true
+    } else {
+      result = false
+    }
+    return result
+  }
+
   render() {
     const { location, state, weather, view, zip, showWeatherView, currentTemp } = this.state
     let mode
@@ -247,7 +258,7 @@ class Main extends Component {
 
     return (
       <ScrollView style={styles.container}>
-        {view === 'us-city-state' &&
+        {this.thereIsData() &&
           <CurrentWeather
             currentTemp={currentTemp}
             location={location}
