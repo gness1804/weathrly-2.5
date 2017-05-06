@@ -127,10 +127,12 @@ class Main extends Component {
     const city = this.state.location.toLowerCase();
     const state = this.state.state;
     const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${state}/${city}.json`
-    axios.get(url).then((data) => {
+    axios.get(url)
+    .then((data) => {
       const currentTemp = data.data.current_observation.temp_f
       this.setState({ currentTemp })
     })
+    .catch((err: string): void => { throw new Error(err) })
   }
 
   thereIsData = (): boolean => {
