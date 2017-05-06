@@ -26,7 +26,7 @@ const CurrentWeather = ({ ...props }: Object) => {
       <Text style={styles.headline}>
           Current temperature in {capitalize(location)}:
       </Text>
-      <Text style={degreeStyle}>{Math.round(currentTemp).toString()} &deg; F</Text>
+      {currentTemp ? <Text style={degreeStyle}>{Math.round(currentTemp).toString()} &deg; F</Text> : <Text>Loading...</Text>}
     </View>
   )
 }
