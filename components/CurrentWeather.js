@@ -5,12 +5,13 @@ import {
   Text,
   View,
 } from 'react-native';
+import capitalize from '../helpers/capitalize';
 
 const CurrentWeather = ({ ...props }: Object) => {
   const { currentTemp, location } = props
   return (
     <View>
-      <Text>Current temperature in {location}: </Text>
+      <Text>Current temperature in {capitalize(location)}: </Text>
       <Text>{Math.round(currentTemp).toString()} degrees F.</Text>
     </View>
   )
