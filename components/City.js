@@ -9,6 +9,7 @@ import {
     Image,
 } from 'react-native'
 import AddCityView from './AddCityView';
+import styles from '../styles/city-styles';
 
 class City extends Component {
   constructor(props: Object) {
@@ -31,6 +32,11 @@ class City extends Component {
     this.setState({ state })
   }
 
+  deleteCity = (): void => {
+    this.setState({ name: '' })
+    this.setState({ state: '' })
+  }
+
   hideAddCityView = (): void => {
     this.setState({ showAddCityView: false })
   }
@@ -47,6 +53,13 @@ class City extends Component {
         <View>
           <Text>{name}</Text>
           <Text>{state}</Text>
+          <TouchableOpacity
+            onPress={this.deleteCity}
+          >
+            <Image
+              source={require('../images/cancel-circle.png')}
+            />
+          </TouchableOpacity>
         </View>
        )
     } else {
@@ -64,7 +77,7 @@ class City extends Component {
        )
     }
     return (
-      <View>
+      <View style={styles.container}>
         <Modal
           visible={showAddCityView}
           onRequestClose={() => { this.hideAddCityView() }}
