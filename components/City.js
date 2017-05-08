@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     Image,
 } from 'react-native'
+import AddCityView from './AddCityView';
 
 class City extends Component {
   constructor(props: Object) {
@@ -63,7 +64,7 @@ class City extends Component {
           visible={showAddCityView}
           onRequestClose={() => { this.hideAddCityView() }}
         >
-          <Text>I am the add city view.</Text>
+          <AddCityView />
         </Modal>
         {view}
       </View>
