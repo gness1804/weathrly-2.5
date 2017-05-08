@@ -8,7 +8,7 @@ import {
 import capitalize from '../helpers/capitalize';
 import styles from '../styles/current-weather-styles';
 import formatTemp from '../helpers/formatTemp'
-import findDegreeStyle from '../helpers/findDegreeStyle'
+import findDegreeStyleCurrent from '../helpers/findDegreeStyleCurrent'
 
 const CurrentWeather = ({ ...props }: Object) => {
   const { currentTemp, location } = props
@@ -17,7 +17,7 @@ const CurrentWeather = ({ ...props }: Object) => {
       <Text style={styles.headline}>
           Current temperature in {capitalize(location)}:
       </Text>
-      {currentTemp ? <Text style={findDegreeStyle(currentTemp)}>{formatTemp(currentTemp)} &deg; F</Text> : <Text>Loading...</Text>}
+      {currentTemp ? <Text style={findDegreeStyleCurrent(currentTemp)}>{formatTemp(currentTemp)} &deg; F</Text> : <Text>Loading...</Text>}
     </View>
   )
 }
