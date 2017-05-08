@@ -8,12 +8,14 @@ import {
     TouchableOpacity,
     Image,
     AsyncStorage,
+    Alert,
 } from 'react-native'
 import axios from 'axios';
 import AddCityView from './AddCityView';
 import formatTemp from '../helpers/formatTemp'
 import styles from '../styles/city-styles';
 import findDegreeStyleCity from '../helpers/findDegreeStyleCity'
+import capitalize from '../helpers/capitalize';
 
 class City extends Component {
   constructor(props: Object) {
@@ -80,11 +82,16 @@ class City extends Component {
       const currentTemp = data.data.current_observation.temp_f
       this.setState({ currentTemp })
     })
-    .catch((err: string): void => { throw new Error(err) })
+    .catch((): void => { this.throwBogusDataError(city, state) })
   }
 
   showAddCityView = (): void => {
     this.setState({ showAddCityView: true })
+  }
+
+  throwBogusDataError = (city: string, state: string): void => {
+    Alert.alert(`Error: ${capitalize(city)}, ${state} is not a valid location. Please try again.`)
+    this.deleteCity()
   }
 
   render() {
