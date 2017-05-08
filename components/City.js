@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import AddCityView from './AddCityView';
 import styles from '../styles/city-styles';
+import axios from 'axios';
 
 class City extends Component {
   constructor(props: Object) {
@@ -19,6 +20,7 @@ class City extends Component {
       name: '',
       state: '',
       showAddCityView: false,
+      currentTemp: 0,
     }
   }
 
@@ -26,14 +28,20 @@ class City extends Component {
     name: string,
     state: string,
     showAddCityView: boolean,
+    currentTemp: number,
   }
 
   componentDidMount = (): void => {
     const id = this.props.id.toString()
     AsyncStorage.getItem(`pinnedCity${id}-name`)
-    .then((name) => { this.setState({ name }) })
+    .then((name: string): void => { this.setState({ name }) })
     AsyncStorage.getItem(`pinnedCity${id}-state`)
-    .then((state) => { this.setState({ state }) })
+    .then((state: string): void => { this.setState({ state }) })
+    .then(() => {
+      if (this.state.name && this.state.state) {
+        this.makeAPICall()
+      }
+    })
   }
 
   props: {
@@ -60,18 +68,31 @@ class City extends Component {
     this.setState({ showAddCityView: false })
   }
 
+  makeAPICall = (): void => {
+    const city = this.state.name.toLowerCase();
+    const state = this.state.state;
+    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${state}/${city}.json`
+    axios.get(url)
+    .then((data: Object): void => {
+      const currentTemp = data.data.current_observation.temp_f
+      this.setState({ currentTemp })
+    })
+    .catch((err: string): void => { throw new Error(err) })
+  }
+
   showAddCityView = (): void => {
     this.setState({ showAddCityView: true })
   }
 
   render() {
-    const { name, state, showAddCityView } = this.state
+    const { name, state, showAddCityView, currentTemp } = this.state
     let view
     if (name) {
       view = (
         <View>
           <Text>{name}</Text>
           <Text>{state}</Text>
+          <Text>{Math.round(currentTemp).toString()} &deg; F</Text>
           <TouchableOpacity
             onPress={this.deleteCity}
           >
