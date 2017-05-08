@@ -8,26 +8,16 @@ import {
 import capitalize from '../helpers/capitalize';
 import styles from '../styles/current-weather-styles';
 import formatTemp from '../helpers/formatTemp'
+import findDegreeStyle from '../helpers/findDegreeStyle'
 
 const CurrentWeather = ({ ...props }: Object) => {
   const { currentTemp, location } = props
-  let degreeStyle
-  if (currentTemp < 50) {
-    degreeStyle = styles.cold
-  } else if (currentTemp < 65) {
-    degreeStyle = styles.chilly
-  } else if (currentTemp < 80) {
-    degreeStyle = styles.ideal
-  } else {
-    degreeStyle = styles.hot
-  }
-
   return (
     <View style={styles.container}>
       <Text style={styles.headline}>
           Current temperature in {capitalize(location)}:
       </Text>
-      {currentTemp ? <Text style={degreeStyle}>{formatTemp(currentTemp)} &deg; F</Text> : <Text>Loading...</Text>}
+      {currentTemp ? <Text style={findDegreeStyle(currentTemp)}>{formatTemp(currentTemp)} &deg; F</Text> : <Text>Loading...</Text>}
     </View>
   )
 }

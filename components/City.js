@@ -13,6 +13,7 @@ import axios from 'axios';
 import AddCityView from './AddCityView';
 import formatTemp from '../helpers/formatTemp'
 import styles from '../styles/city-styles';
+import findDegreeStyle from '../helpers/findDegreeStyle'
 
 class City extends Component {
   constructor(props: Object) {
@@ -94,7 +95,7 @@ class City extends Component {
         <View>
           <Text>{name}</Text>
           <Text>{state}</Text>
-          {currentTemp ? <Text>{formatTemp(currentTemp)} &deg; F</Text> : <Text>Loading...</Text>}
+          {currentTemp ? <Text style={findDegreeStyle(currentTemp)}>{formatTemp(currentTemp)} &deg; F</Text> : <Text>Loading...</Text>}
           <TouchableOpacity
             onPress={this.deleteCity}
           >
