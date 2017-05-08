@@ -68,7 +68,7 @@ class Main extends Component {
       .then((): void => { AsyncStorage.setItem('city', city) })
       .then((): void => { AsyncStorage.setItem('state', state) })
       .then((): void => { this.makeAPICallForCurrentTemp() })
-      .catch((): void => { Alert.alert('There was a problem fetching your data. Please check your entries and try again.') })
+      .catch((): void => { this.throwBogusDataError(city, state) })
     }
 
     if (this.state.view === 'us-zip') {
@@ -169,6 +169,10 @@ class Main extends Component {
       result = false
     }
     return result
+  }
+
+  throwBogusDataError = (city: string, state: string): void => {
+    Alert.alert(`Error: ${capitalize(city)}, ${state} is not a valid location. Please try again.`)
   }
 
   render() {
