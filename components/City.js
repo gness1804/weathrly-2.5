@@ -1,25 +1,71 @@
 // @flow
 
 import React, { Component } from 'react';
-import { View, Text } from 'react-native'
+import {
+    View,
+    Text,
+    Modal,
+    TouchableOpacity,
+    Image,
+} from 'react-native'
 
 class City extends Component {
   constructor(props: Object) {
     super(props);
     this.state = {
-      
+      name: '',
+      state: '',
+      showAddCityView: false,
     }
   }
 
   state: {
-    
+    name: string,
+    state: string,
+    showAddCityView: boolean,
+  }
+
+  hideAddCityView = (): void => {
+    this.setState({ showAddCityView: false })
+  }
+
+  showAddCityView = (): void => {
+    this.setState({ showAddCityView: true })
   }
 
   render() {
-    // const { cities } = this.state
+    const { name, state, showAddCityView } = this.state
+    let view
+    if (name) {
+      view = (
+        <View>
+          <Text>{name}</Text>
+          <Text>{state}</Text>
+        </View>
+       )
+    } else {
+      view = (
+        <View>
+          <Text>Add City</Text>
+          <TouchableOpacity
+            onPress={this.showAddCityView}
+          >
+            <Image
+              source={require('../images/plus-icon-small.png')}
+            />
+          </TouchableOpacity>
+        </View>
+       )
+    }
     return (
       <View>
-        <Text>I am a city component.</Text>
+        <Modal
+          visible={showAddCityView}
+          onRequestClose={() => { this.hideAddCityView() }}
+        >
+          <Text>I am the add city view.</Text>
+        </Modal>
+        {view}
       </View>
     );
   }
