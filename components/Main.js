@@ -68,7 +68,7 @@ class Main extends Component {
       .then((): void => { AsyncStorage.setItem('city', city) })
       .then((): void => { AsyncStorage.setItem('state', state) })
       .then((): void => { this.makeAPICallForCurrentTemp() })
-      .catch((): void => { this.throwBogusDataError(city, state) })
+      .catch((): void => { this.throwBogusDataErrorCity(city, state) })
     }
 
     if (this.state.view === 'us-zip') {
@@ -85,7 +85,7 @@ class Main extends Component {
       .then((): void => { this.setState({ showWeatherView: true }) })
       .then((): void => { AsyncStorage.setItem('zip', zip) })
       .then((): void => { this.makeZipAPICall() })
-      .catch((): void => { Alert.alert('There was a problem fetching your data. Please check your entries and try again.') })
+      .catch((): void => { this.throwBogusDataErrorZip(zip) })
     }
   }
 
@@ -171,8 +171,12 @@ class Main extends Component {
     return result
   }
 
-  throwBogusDataError = (city: string, state: string): void => {
+  throwBogusDataErrorCity = (city: string, state: string): void => {
     Alert.alert(`Error: ${capitalize(city)}, ${state} is not a valid location. Please try again.`)
+  }
+
+  throwBogusDataErrorZip = (zip: string): void => {
+    Alert.alert(`Error: ${zip} is not a valid US zip code. Please try again.`)
   }
 
   render() {
