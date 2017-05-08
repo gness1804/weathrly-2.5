@@ -93,8 +93,8 @@ class City extends Component {
     if (name) {
       view = (
         <View>
-          <Text>{name}</Text>
-          <Text>{state}</Text>
+          <Text style={styles.name}>{name},</Text>
+          <Text style={styles.state}>{state}</Text>
           {currentTemp ? <Text style={findDegreeStyleCity(currentTemp)}>{formatTemp(currentTemp)} &deg; F</Text> : <Text>Loading...</Text>}
           <TouchableOpacity
             onPress={this.deleteCity}
