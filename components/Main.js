@@ -17,6 +17,7 @@ import {
 import axios from 'axios';
 import WeatherView from './WeatherView'
 import CurrentWeather from './CurrentWeather'
+import PinnedCities from './PinnedCities'
 import styles from '../styles/main-styles';
 import zipCodeIsValid from '../helpers/zipCodeValidation';
 import commonElements from '../styles/commonElements';
@@ -326,6 +327,7 @@ class Main extends Component {
             />
           </Modal>
         </ScrollView>
+        <PinnedCities />
       </ScrollView>
     );
   }
