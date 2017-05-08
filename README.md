@@ -2,7 +2,10 @@
 
 This is a port of my [old Weathrly project](https://github.com/gness1804/weathrly-react-native) bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app). It contains all of the features of the original, plus a rebuilt design.
 
-Tested on Android (real Nexus 5X and Nexus 9) using the Expo app.
+*Tested on:*
+* Android: real Nexus 5X and Nexus 9 using the Expo app.
+* iOS: iPhone6 simulator using the Expo XDE. 
+
 
 Sources that proved useful: 
 
