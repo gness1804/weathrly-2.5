@@ -3,9 +3,10 @@ import commonElements from './commonElements';
 
 const styles = StyleSheet.create({
   instructions: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: '600',
     marginBottom: 40,
+    marginTop: 60,
     textAlign: 'center',
   },
   locationInput: {
