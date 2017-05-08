@@ -58,6 +58,7 @@ class City extends Component {
           >
             <Image
               source={require('../images/cancel-circle.png')}
+              style={styles.icon}
             />
           </TouchableOpacity>
         </View>
@@ -71,6 +72,7 @@ class City extends Component {
           >
             <Image
               source={require('../images/plus-icon-small.png')}
+              style={styles.icon}
             />
           </TouchableOpacity>
         </View>

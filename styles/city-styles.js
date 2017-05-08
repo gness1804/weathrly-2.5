@@ -8,6 +8,12 @@ const styles = StyleSheet.create({
     marginRight: 20,
     padding: 10,
   },
+  icon: {
+    alignSelf: 'center',
+    height: 20,
+    marginTop: 10,
+    width: 20,
+  },
 })
 
 export default styles
