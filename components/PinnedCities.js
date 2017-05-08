@@ -1,13 +1,16 @@
 // @flow
 
 import React from 'react';
-import { View } from 'react-native'
+import { ScrollView } from 'react-native'
 import City from './City';
 import styles from '../styles/pinned-city-styles';
 
 const PinnedCities = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      horizontal
+    >
       <City
         id={1}
       />
@@ -17,7 +20,7 @@ const PinnedCities = () => {
       <City
         id={3}
       />
-    </View>
+    </ScrollView>
   );
 }
 
