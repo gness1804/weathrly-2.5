@@ -54,6 +54,7 @@ class City extends Component {
     .then(() => { this.setState({ name: city }) })
     AsyncStorage.setItem(`pinnedCity${id}-state`, state)
     .then(() => { this.setState({ state }) })
+    .then(() => { this.makeAPICall() })
   }
 
   deleteCity = (): void => {
@@ -92,7 +93,7 @@ class City extends Component {
         <View>
           <Text>{name}</Text>
           <Text>{state}</Text>
-          <Text>{Math.round(currentTemp).toString()} &deg; F</Text>
+          {currentTemp ? <Text>{Math.round(currentTemp).toString()} &deg; F</Text> : <Text>Loading...</Text>}
           <TouchableOpacity
             onPress={this.deleteCity}
           >
