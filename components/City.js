@@ -7,6 +7,7 @@ import {
     Modal,
     TouchableOpacity,
     Image,
+    AsyncStorage,
 } from 'react-native'
 import AddCityView from './AddCityView';
 import styles from '../styles/city-styles';
@@ -27,14 +28,32 @@ class City extends Component {
     showAddCityView: boolean,
   }
 
+  componentDidMount = (): void => {
+    const id = this.props.id.toString()
+    AsyncStorage.getItem(`pinnedCity${id}-name`)
+    .then((name) => { this.setState({ name }) })
+    AsyncStorage.getItem(`pinnedCity${id}-state`)
+    .then((state) => { this.setState({ state }) })
+  }
+
+  props: {
+    id: number,
+  }
+
   addCity = (city: string, state: string): void => {
-    this.setState({ name: city })
-    this.setState({ state })
+    const id = this.props.id.toString()
+    AsyncStorage.setItem(`pinnedCity${id}-name`, city)
+    .then(() => { this.setState({ name: city }) })
+    AsyncStorage.setItem(`pinnedCity${id}-state`, state)
+    .then(() => { this.setState({ state }) })
   }
 
   deleteCity = (): void => {
-    this.setState({ name: '' })
-    this.setState({ state: '' })
+    const id = this.props.id.toString()
+    AsyncStorage.setItem(`pinnedCity${id}-name`, '')
+    .then(() => { this.setState({ name: '' }) })
+    AsyncStorage.setItem(`pinnedCity${id}-state`, '')
+    .then(() => { this.setState({ state: '' }) })
   }
 
   hideAddCityView = (): void => {

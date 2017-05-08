@@ -9,13 +9,13 @@ const PinnedCities = () => {
   return (
     <View style={styles.container}>
       <City
-        id="1"
+        id={1}
       />
       <City
-        id="2"
+        id={2}
       />
       <City
-        id="3"
+        id={3}
       />
     </View>
   );
