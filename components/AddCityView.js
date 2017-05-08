@@ -10,6 +10,7 @@ import {
     Image,
     TextInput,
     Button,
+    Alert,
 } from 'react-native'
 import styles from '../styles/add-city-view-styles';
 import commonElements from '../styles/commonElements';
@@ -19,7 +20,7 @@ class AddCityView extends Component {
     super(props);
     this.state = {
       location: '',
-      state: '',
+      state: 'AL',
     }
   }
 
@@ -29,12 +30,23 @@ class AddCityView extends Component {
   }
 
   props: {
+    addCity: Function,
     hideAddCityView: Function,
+  }
+
+  addCity = (location: string, state: string): void => {
+    if (!location || !state) {
+      Alert.alert('Error: You must choose a city and a state.')
+      return
+    }
+    this.props.addCity(location, state)
+    this.hideAddCityView()
   }
 
   clearLocationState = (): void => {
     this.setState({ location: '' })
   }
+
   hideAddCityView = (): void => {
     this.props.hideAddCityView()
   }
@@ -119,9 +131,13 @@ class AddCityView extends Component {
             <Picker.Item label="Wisconsin" value="WI" />
             <Picker.Item label="Wyoming" value="WY" />
         </Picker>
-        <Button 
+        <Button
           title="Cancel"
-          onPress={ () => { this.hideAddCityView() }}
+          onPress={() => { this.hideAddCityView() }}
+        />
+        <Button
+          title="Add City"
+          onPress={() => { this.addCity(location, state) }}
         />
       </ScrollView>
     );

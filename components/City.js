@@ -26,6 +26,11 @@ class City extends Component {
     showAddCityView: boolean,
   }
 
+  addCity = (city: string, state: string): void => {
+    this.setState({ name: city })
+    this.setState({ state })
+  }
+
   hideAddCityView = (): void => {
     this.setState({ showAddCityView: false })
   }
@@ -65,6 +70,7 @@ class City extends Component {
           onRequestClose={() => { this.hideAddCityView() }}
         >
           <AddCityView
+            addCity={this.addCity}
             hideAddCityView={this.hideAddCityView}
           />
         </Modal>
