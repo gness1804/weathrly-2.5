@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import capitalize from '../helpers/capitalize';
 import styles from '../styles/current-weather-styles';
+import formatTemp from '../helpers/formatTemp'
 
 const CurrentWeather = ({ ...props }: Object) => {
   const { currentTemp, location } = props
@@ -26,7 +27,7 @@ const CurrentWeather = ({ ...props }: Object) => {
       <Text style={styles.headline}>
           Current temperature in {capitalize(location)}:
       </Text>
-      {currentTemp ? <Text style={degreeStyle}>{Math.round(currentTemp).toString()} &deg; F</Text> : <Text>Loading...</Text>}
+      {currentTemp ? <Text style={degreeStyle}>{formatTemp(currentTemp)} &deg; F</Text> : <Text>Loading...</Text>}
     </View>
   )
 }
