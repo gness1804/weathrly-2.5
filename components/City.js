@@ -64,7 +64,9 @@ class City extends Component {
           visible={showAddCityView}
           onRequestClose={() => { this.hideAddCityView() }}
         >
-          <AddCityView />
+          <AddCityView
+            hideAddCityView={this.hideAddCityView}
+          />
         </Modal>
         {view}
       </View>

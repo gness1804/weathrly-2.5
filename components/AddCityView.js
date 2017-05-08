@@ -3,11 +3,13 @@
 import React, { Component } from 'react';
 import {
     View,
+    ScrollView,
     Text,
     Picker,
     TouchableOpacity,
     Image,
     TextInput,
+    Button,
 } from 'react-native'
 import styles from '../styles/add-city-view-styles';
 import commonElements from '../styles/commonElements';
@@ -26,38 +28,45 @@ class AddCityView extends Component {
     state: string,
   }
 
+  props: {
+    hideAddCityView: Function,
+  }
+
   clearLocationState = (): void => {
     this.setState({ location: '' })
+  }
+  hideAddCityView = (): void => {
+    this.props.hideAddCityView()
   }
 
   render() {
     const { location, state } = this.state
     return (
-      <View>
+      <ScrollView>
         <Text style={styles.instructions}>
             --Choose your city and state (US only)--
-          </Text>
-          <View style={styles.locationInputContainer}>
-            <TextInput
-              placeholder="Enter City"
-              placeholderTextColor={commonElements.placeholder.color}
-              value={location || ''}
-              style={styles.locationInput}
-              onChangeText={(text) => { this.setState({ location: text }) }}
-            />
-            <TouchableOpacity
-              onPress={this.clearLocationState}
-            >
-              <Image
-                source={require('../images/cancel-circle.png')}
-              />
-            </TouchableOpacity>
-          </View>
-          <Picker
-            selectedValue={state}
-            onValueChange={(choice) => { this.setState({ state: choice }) }}
-            style={styles.statePicker}
+        </Text>
+        <View style={styles.locationInputContainer}>
+          <TextInput
+            placeholder="Enter City"
+            placeholderTextColor={commonElements.placeholder.color}
+            value={location || ''}
+            style={styles.locationInput}
+            onChangeText={(text) => { this.setState({ location: text }) }}
+          />
+          <TouchableOpacity
+            onPress={this.clearLocationState}
           >
+            <Image
+              source={require('../images/cancel-circle.png')}
+            />
+          </TouchableOpacity>
+        </View>
+        <Picker
+          selectedValue={state}
+          onValueChange={(choice) => { this.setState({ state: choice }) }}
+          style={styles.statePicker}
+        >
             <Picker.Item label="Alabama" value="AL" />
             <Picker.Item label="Alaska" value="AK" />
             <Picker.Item label="Arizona" value="AZ" />
@@ -109,8 +118,12 @@ class AddCityView extends Component {
             <Picker.Item label="West Virginia" value="WV" />
             <Picker.Item label="Wisconsin" value="WI" />
             <Picker.Item label="Wyoming" value="WY" />
-          </Picker>
-      </View>
+        </Picker>
+        <Button 
+          title="Cancel"
+          onPress={ () => { this.hideAddCityView() }}
+        />
+      </ScrollView>
     );
   }
 }
