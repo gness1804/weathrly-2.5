@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginRight: 20,
     padding: 10,
+    width: '20%',
   },
   hot: {
     color: '#EB2C08',

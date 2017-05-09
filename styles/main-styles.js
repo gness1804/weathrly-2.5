@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   container: {
+    alignItems: 'center',
     padding: 20,
     width: '90%',
   },

@@ -292,7 +292,7 @@ class Main extends Component {
     }
 
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         {this.thereIsData() &&
           <CurrentWeather
             currentTemp={currentTemp}
