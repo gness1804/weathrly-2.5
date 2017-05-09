@@ -54,7 +54,7 @@ class AddCityView extends Component {
   render() {
     const { location, state } = this.state
     return (
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.instructions}>
             --Choose your city and state (US only)--
         </Text>
@@ -131,14 +131,20 @@ class AddCityView extends Component {
           <Picker.Item label="Wisconsin" value="WI" />
           <Picker.Item label="Wyoming" value="WY" />
         </Picker>
-        <Button
-          title="Cancel"
-          onPress={() => { this.hideAddCityView() }}
-        />
-        <Button
-          title="Add City"
-          onPress={() => { this.addCity(location, state) }}
-        />
+        <View style={styles.button}>
+          <Button
+            title="Cancel"
+            onPress={() => { this.hideAddCityView() }}
+            color={commonElements.button.color}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Add City"
+            onPress={() => { this.addCity(location, state) }}
+            color={commonElements.button.color}
+          />
+        </View>
       </ScrollView>
     );
   }

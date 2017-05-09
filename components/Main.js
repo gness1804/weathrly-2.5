@@ -313,11 +313,13 @@ class Main extends Component {
             <Picker.Item label="US City and State" value="us-city-state" />
             <Picker.Item label="US Zip Code" value="us-zip" />
           </Picker>
-          <Button
-            title="Get Weather"
-            color={commonElements.button.color}
-            onPress={() => { this.getWeather() }}
-          />
+          <View style={styles.mainButton}>
+            <Button
+              title="Get Weather"
+              color={commonElements.button.color}
+              onPress={() => { this.getWeather() }}
+            />
+          </View>
         </View>
         <ScrollView
           style={styles.weatherCardsList}

@@ -2,6 +2,16 @@ import { StyleSheet } from 'react-native';
 import commonElements from './commonElements';
 
 const styles = StyleSheet.create({
+  button: {
+    alignSelf: commonElements.button.alignSelf,
+    marginBottom: commonElements.button.marginBottom,
+    width: commonElements.button.width,
+  },
+  container: {
+    alignItems: 'center',
+    backgroundColor: commonElements.backgroundColor,
+    flex: 1,
+  },
   instructions: {
     fontSize: 22,
     fontWeight: '600',
@@ -21,6 +31,7 @@ const styles = StyleSheet.create({
   },
   statePicker: {
     alignSelf: 'center',
+    marginBottom: 40,
     width: '90%',
   },
 })

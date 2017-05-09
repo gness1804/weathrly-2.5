@@ -1,7 +1,10 @@
 const commonElements = {
   backgroundColor: 'rgb(205, 244, 247)',
   button: {
+    alignSelf: 'center',
     color: 'rgb(43, 34, 203)',
+    marginBottom: 20,
+    width: '80%',
   },
   headline: {
     fontSize: 30,

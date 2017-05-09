@@ -28,6 +28,11 @@ const styles = StyleSheet.create({
     justifyContent: commonElements.inputContainer.justifyContent,
     marginBottom: commonElements.inputContainer.marginBottom,
   },
+  mainButton: {
+    alignSelf: commonElements.button.alignSelf,
+    marginBottom: commonElements.button.marginBottom,
+    width: commonElements.button.width,
+  },
   selectModeDropdown: {
     marginBottom: 40,
   },
