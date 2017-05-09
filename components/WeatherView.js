@@ -41,8 +41,6 @@ class WeatherView extends Component {
       hideWeatherView: Function,
   }
 
-  // thanks to this Stack Overflow post for this function: https://stackoverflow.com/questions/4878756/javascript-how-to-capitalize-first-letter-of-each-word-like-a-2-word-city
-
   hideWeatherView = (): void => {
     this.props.hideWeatherView()
   }

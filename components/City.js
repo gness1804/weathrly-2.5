@@ -16,6 +16,7 @@ import formatTemp from '../helpers/formatTemp'
 import styles from '../styles/city-styles';
 import findDegreeStyleCity from '../helpers/findDegreeStyleCity'
 import capitalize from '../helpers/capitalize';
+import WeatherView from './WeatherView'
 
 class City extends Component {
   constructor(props: Object) {
@@ -24,7 +25,9 @@ class City extends Component {
       name: '',
       state: '',
       showAddCityView: false,
+      showWeatherView: false,
       currentTemp: 0,
+      fullForecast: [],
     }
   }
 
@@ -32,7 +35,9 @@ class City extends Component {
     name: string,
     state: string,
     showAddCityView: boolean,
+    showWeatherView: boolean,
     currentTemp: number,
+    fullForecast: Array<Object>,
   }
 
   componentDidMount = (): void => {
@@ -46,10 +51,6 @@ class City extends Component {
         this.makeAPICall()
       }
     })
-  }
-
-  props: {
-    id: number,
   }
 
   addCity = (city: string, state: string): void => {
@@ -69,8 +70,32 @@ class City extends Component {
     .then(() => { this.setState({ state: '' }) })
   }
 
+  getFullForecast = (): void => {
+    const city = this.state.name.toLowerCase();
+    const state = this.state.state;
+    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/forecast/q/${state}/${city}.json`
+    if (!city || !state) {
+      Alert.alert('Error: you must enter both a city and a state.')
+      return
+    }
+    axios.get(url)
+    .then((data: Object): void => {
+      this.setState({ fullForecast: data.data.forecast.txt_forecast.forecastday })
+    })
+    .then((): void => { this.setState({ showWeatherView: true }) })
+    .catch((err: string): void => { throw new Error(err) })
+  }
+
+  props: {
+    id: number,
+  }
+
   hideAddCityView = (): void => {
     this.setState({ showAddCityView: false })
+  }
+
+  hideWeatherView = (): void => {
+    this.setState({ showWeatherView: false })
   }
 
   makeAPICall = (): void => {
@@ -95,12 +120,12 @@ class City extends Component {
   }
 
   render() {
-    const { name, state, showAddCityView, currentTemp } = this.state
+    const { name, state, showAddCityView, currentTemp, showWeatherView, fullForecast } = this.state
     let view
     if (name) {
       view = (
         <View>
-          <Text style={styles.name}>{capitalize(name)},</Text>
+          <Text style={styles.name} onPress={this.getFullForecast}>{capitalize(name)},</Text>
           <Text style={styles.state}>{state}</Text>
           {currentTemp ? <Text style={findDegreeStyleCity(currentTemp)}>{formatTemp(currentTemp)} &deg; F</Text> : <Text>Loading...</Text>}
           <TouchableOpacity
@@ -140,6 +165,18 @@ class City extends Component {
           />
         </Modal>
         {view}
+        <Modal
+          visible={showWeatherView}
+          onRequestClose={() => { this.hideWeatherView() }}
+        >
+          <WeatherView
+            weather={fullForecast}
+            location={name}
+            state={state}
+            view="us-city-state"
+            hideWeatherView={this.hideWeatherView}
+          />
+        </Modal>
       </View>
     );
   }
