@@ -1,5 +1,8 @@
 ## Weathrly 
 
+![Screenshot of main view.](images/android-screenshot-main-view.png)
+![Screenshot of forecast view.](images/android-screenshot-forecast-view.png)
+
 This is a port of my [old Weathrly project](https://github.com/gness1804/weathrly-react-native) bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app). It contains all of the features of the original, plus a rebuilt design.
 
 *Tested on:*
