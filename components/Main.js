@@ -157,6 +157,7 @@ class Main extends Component {
       AsyncStorage.setItem('city', obj.city)
       AsyncStorage.setItem('state', obj.state)
     })
+    .then((): void => { this.makeAPICallForCurrentTemp() })
     .catch((err: string): void => { throw new Error(err) })
   }
 
