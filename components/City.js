@@ -9,14 +9,14 @@ import {
     Image,
     AsyncStorage,
     Alert,
-} from 'react-native'
+} from 'react-native';
 import axios from 'axios';
 import AddCityView from './AddCityView';
-import formatTemp from '../helpers/formatTemp'
+import formatTemp from '../helpers/formatTemp';
 import styles from '../styles/city-styles';
-import findDegreeStyleCity from '../helpers/findDegreeStyleCity'
+import findDegreeStyleCity from '../helpers/findDegreeStyleCity';
 import capitalize from '../helpers/capitalize';
-import WeatherView from './WeatherView'
+import WeatherView from './WeatherView';
 
 class City extends Component {
   constructor(props: Object) {
@@ -28,7 +28,7 @@ class City extends Component {
       showWeatherView: false,
       currentTemp: 0,
       fullForecast: [],
-    }
+    };
   }
 
   state: {
@@ -41,49 +41,49 @@ class City extends Component {
   }
 
   componentDidMount = (): void => {
-    const id = this.props.id.toString()
+    const id = this.props.id.toString();
     AsyncStorage.getItem(`pinnedCity${id}-name`)
-    .then((name: string): void => { this.setState({ name }) })
+    .then((name: string): void => { this.setState({ name }); });
     AsyncStorage.getItem(`pinnedCity${id}-state`)
-    .then((state: string): void => { this.setState({ state }) })
+    .then((state: string): void => { this.setState({ state }); })
     .then(() => {
       if (this.state.name && this.state.state) {
-        this.makeAPICall()
+        this.makeAPICall();
       }
-    })
-  }
-
-  addCity = (city: string, state: string): void => {
-    const id = this.props.id.toString()
-    AsyncStorage.setItem(`pinnedCity${id}-name`, city)
-    .then(() => { this.setState({ name: city }) })
-    AsyncStorage.setItem(`pinnedCity${id}-state`, state)
-    .then(() => { this.setState({ state }) })
-    .then(() => { this.makeAPICall() })
-  }
-
-  deleteCity = (): void => {
-    const id = this.props.id.toString()
-    AsyncStorage.setItem(`pinnedCity${id}-name`, '')
-    .then(() => { this.setState({ name: '' }) })
-    AsyncStorage.setItem(`pinnedCity${id}-state`, '')
-    .then(() => { this.setState({ state: '' }) })
+    });
   }
 
   getFullForecast = (): void => {
     const city = this.state.name.toLowerCase();
     const state = this.state.state;
-    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/forecast/q/${state}/${city}.json`
+    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/forecast/q/${state}/${city}.json`;
     if (!city || !state) {
-      Alert.alert('Error: you must enter both a city and a state.')
-      return
+      Alert.alert('Error: you must enter both a city and a state.');
+      return;
     }
     axios.get(url)
     .then((data: Object): void => {
-      this.setState({ fullForecast: data.data.forecast.txt_forecast.forecastday })
+      this.setState({ fullForecast: data.data.forecast.txt_forecast.forecastday });
     })
-    .then((): void => { this.setState({ showWeatherView: true }) })
-    .catch((err: string): void => { throw new Error(err) })
+    .then((): void => { this.setState({ showWeatherView: true }); })
+    .catch((err: string): void => { throw new Error(err); });
+  }
+
+  addCity = (city: string, state: string): void => {
+    const id = this.props.id.toString();
+    AsyncStorage.setItem(`pinnedCity${id}-name`, city)
+        .then(() => { this.setState({ name: city }); });
+    AsyncStorage.setItem(`pinnedCity${id}-state`, state)
+        .then(() => { this.setState({ state }); })
+        .then(() => { this.makeAPICall(); });
+  }
+
+  deleteCity = (): void => {
+    const id = this.props.id.toString();
+    AsyncStorage.setItem(`pinnedCity${id}-name`, '')
+        .then(() => { this.setState({ name: '' }); });
+    AsyncStorage.setItem(`pinnedCity${id}-state`, '')
+        .then(() => { this.setState({ state: '' }); });
   }
 
   props: {
@@ -91,37 +91,37 @@ class City extends Component {
   }
 
   hideAddCityView = (): void => {
-    this.setState({ showAddCityView: false })
+    this.setState({ showAddCityView: false });
   }
 
   hideWeatherView = (): void => {
-    this.setState({ showWeatherView: false })
+    this.setState({ showWeatherView: false });
   }
 
   makeAPICall = (): void => {
     const city = this.state.name.toLowerCase();
     const state = this.state.state;
-    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${state}/${city}.json`
+    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${state}/${city}.json`;
     axios.get(url)
     .then((data: Object): void => {
-      const currentTemp = data.data.current_observation.temp_f
-      this.setState({ currentTemp })
+      const currentTemp = data.data.current_observation.temp_f;
+      this.setState({ currentTemp });
     })
-    .catch((): void => { this.throwBogusDataError(city, state) })
+    .catch((): void => { this.throwBogusDataError(city, state); });
   }
 
   showAddCityView = (): void => {
-    this.setState({ showAddCityView: true })
+    this.setState({ showAddCityView: true });
   }
 
   throwBogusDataError = (city: string, state: string): void => {
-    Alert.alert(`Error: ${capitalize(city)}, ${state} is not a valid location. Please try again.`)
-    this.deleteCity()
+    Alert.alert(`Error: ${capitalize(city)}, ${state} is not a valid location. Please try again.`);
+    this.deleteCity();
   }
 
   render() {
-    const { name, state, showAddCityView, currentTemp, showWeatherView, fullForecast } = this.state
-    let view
+    const { name, state, showAddCityView, currentTemp, showWeatherView, fullForecast } = this.state;
+    let view;
     if (name) {
       view = (
         <View>
@@ -137,7 +137,7 @@ class City extends Component {
             />
           </TouchableOpacity>
         </View>
-       )
+       );
     } else {
       view = (
         <View>
@@ -151,13 +151,13 @@ class City extends Component {
             />
           </TouchableOpacity>
         </View>
-       )
+       );
     }
     return (
       <View style={styles.container}>
         <Modal
           visible={showAddCityView}
-          onRequestClose={() => { this.hideAddCityView() }}
+          onRequestClose={() => { this.hideAddCityView(); }}
         >
           <AddCityView
             addCity={this.addCity}
@@ -167,7 +167,7 @@ class City extends Component {
         {view}
         <Modal
           visible={showWeatherView}
-          onRequestClose={() => { this.hideWeatherView() }}
+          onRequestClose={() => { this.hideWeatherView(); }}
         >
           <WeatherView
             weather={fullForecast}

@@ -3,17 +3,17 @@
 import styles from '../styles/city-styles';
 
 const findDegreeStyle = (temp: number): Object => {
-  let result
+  let result;
   if (temp < 50) {
-    result = styles.cold
+    result = styles.cold;
   } else if (temp < 65) {
-    result = styles.chilly
+    result = styles.chilly;
   } else if (temp < 80) {
-    result = styles.ideal
+    result = styles.ideal;
   } else {
-    result = styles.hot
+    result = styles.hot;
   }
-  return result
-}
+  return result;
+};
 
-export default findDegreeStyle
+export default findDegreeStyle;

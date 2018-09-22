@@ -15,7 +15,8 @@
     "eject": "expo eject",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "flow": "node_modules/.bin/flow",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix"
   },
   "jest": {
     "preset": "jest-expo"

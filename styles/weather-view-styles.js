@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import commonElements from './commonElements'
+import commonElements from './commonElements';
 
 const styles = StyleSheet.create({
   cardsContainer: {
@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 20,
   },
-})
+});
 
-export default styles
+export default styles;

@@ -8,6 +8,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 30,
   },
-})
+});
 
-export default styles
+export default styles;

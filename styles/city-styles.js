@@ -3,13 +3,13 @@ import { StyleSheet } from 'react-native';
 const degreeReadout = {
   fontSize: 24,
   textAlign: 'center',
-}
+};
 
 const text = {
   fontSize: 18,
   fontWeight: '600',
   textAlign: 'center',
-}
+};
 
 const styles = StyleSheet.create({
   chilly: {
@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: text.textAlign,
   },
-})
+});
 
-export default styles
+export default styles;

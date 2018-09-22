@@ -11,7 +11,7 @@ import {
     TextInput,
     Button,
     Alert,
-} from 'react-native'
+} from 'react-native';
 import styles from '../styles/add-city-view-styles';
 import commonElements from '../styles/commonElements';
 
@@ -21,7 +21,7 @@ class AddCityView extends Component {
     this.state = {
       location: '',
       state: 'AL',
-    }
+    };
   }
 
   state: {
@@ -36,23 +36,23 @@ class AddCityView extends Component {
 
   addCity = (location: string, state: string): void => {
     if (!location || !state) {
-      Alert.alert('Error: You must choose a city and a state.')
-      return
+      Alert.alert('Error: You must choose a city and a state.');
+      return;
     }
-    this.props.addCity(location, state)
-    this.hideAddCityView()
+    this.props.addCity(location, state);
+    this.hideAddCityView();
   }
 
   clearLocationState = (): void => {
-    this.setState({ location: '' })
+    this.setState({ location: '' });
   }
 
   hideAddCityView = (): void => {
-    this.props.hideAddCityView()
+    this.props.hideAddCityView();
   }
 
   render() {
-    const { location, state } = this.state
+    const { location, state } = this.state;
     return (
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.instructions}>
@@ -64,7 +64,7 @@ class AddCityView extends Component {
             placeholderTextColor={commonElements.placeholder.color}
             value={location || ''}
             style={styles.locationInput}
-            onChangeText={(text) => { this.setState({ location: text }) }}
+            onChangeText={(text) => { this.setState({ location: text }); }}
           />
           <TouchableOpacity
             onPress={this.clearLocationState}
@@ -76,7 +76,7 @@ class AddCityView extends Component {
         </View>
         <Picker
           selectedValue={state}
-          onValueChange={(choice) => { this.setState({ state: choice }) }}
+          onValueChange={(choice) => { this.setState({ state: choice }); }}
           style={styles.statePicker}
         >
           <Picker.Item label="Alabama" value="AL" />
@@ -134,14 +134,14 @@ class AddCityView extends Component {
         <View style={styles.button}>
           <Button
             title="Cancel"
-            onPress={() => { this.hideAddCityView() }}
+            onPress={() => { this.hideAddCityView(); }}
             color={commonElements.button.color}
           />
         </View>
         <View style={styles.button}>
           <Button
             title="Add City"
-            onPress={() => { this.addCity(location, state) }}
+            onPress={() => { this.addCity(location, state); }}
             color={commonElements.button.color}
           />
         </View>

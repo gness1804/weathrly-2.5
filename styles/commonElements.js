@@ -26,6 +26,6 @@ const commonElements = {
   placeholder: {
     color: '#948989',
   },
-}
+};
 
-export default commonElements
+export default commonElements;

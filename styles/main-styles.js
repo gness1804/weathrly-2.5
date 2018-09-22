@@ -68,6 +68,6 @@ const styles = StyleSheet.create({
     justifyContent: commonElements.inputContainer.justifyContent,
     marginBottom: commonElements.inputContainer.marginBottom,
   },
-})
+});
 
-export default styles
+export default styles;

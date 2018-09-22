@@ -7,7 +7,7 @@ import {
 import styles from '../styles/weather-card-styles';
 
 const WeatherCard = ({ ...props }: Object) => {
-  const { icon_url, title, fcttext } = props
+  const { icon_url, title, fcttext } = props;
   return (
     <View style={styles.container}>
       <Image
@@ -19,6 +19,6 @@ const WeatherCard = ({ ...props }: Object) => {
         <Text style={styles.textSpan}>Forecast:</Text> {fcttext}</Text>
     </View>
   );
-}
+};
 
 export default WeatherCard;

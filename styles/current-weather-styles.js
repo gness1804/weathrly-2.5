@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const degreeReadout = {
   fontSize: 32,
-}
+};
 
 const styles = StyleSheet.create({
   chilly: {
@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
     color: '#238623',
     fontSize: degreeReadout.fontSize,
   },
-})
+});
 
-export default styles
+export default styles;

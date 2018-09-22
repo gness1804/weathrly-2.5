@@ -16,7 +16,7 @@ const Header = () => {
       <Text style={styles.headline}>Welcome to Weathrly</Text>
       <Text style={styles.tagline}>Your World, Your Weather.</Text>
       <TouchableOpacity
-        onPress={() => { Linking.openURL('https://www.wunderground.com/') }}
+        onPress={() => { Linking.openURL('https://www.wunderground.com/'); }}
       >
         <Image
           style={styles.pic}
@@ -26,6 +26,6 @@ const Header = () => {
       <Text style={styles.credit}>Data courtesy of Weather Underground.</Text>
     </View>
   );
-}
+};
 
 export default Header;

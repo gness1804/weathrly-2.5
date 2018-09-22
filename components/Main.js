@@ -15,9 +15,9 @@ import {
   Image,
 } from 'react-native';
 import axios from 'axios';
-import WeatherView from './WeatherView'
-import CurrentWeather from './CurrentWeather'
-import PinnedCities from './PinnedCities'
+import WeatherView from './WeatherView';
+import CurrentWeather from './CurrentWeather';
+import PinnedCities from './PinnedCities';
 import styles from '../styles/main-styles';
 import zipCodeIsValid from '../helpers/zipCodeValidation';
 import commonElements from '../styles/commonElements';
@@ -25,7 +25,7 @@ import capitalize from '../helpers/capitalize';
 
 class Main extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       weather: [],
       location: 'Austin',
@@ -34,7 +34,7 @@ class Main extends Component {
       view: 'us-city-state',
       showWeatherView: false,
       currentTemp: 0,
-    }
+    };
   }
 
   state: {
@@ -48,141 +48,141 @@ class Main extends Component {
   }
 
   componentDidMount(): void {
-    this.fillCityAndStateData()
+    this.fillCityAndStateData();
   }
 
   getWeather = (): void => {
     if (this.state.view === 'us-city-state') {
       const city = this.state.location.toLowerCase();
       const state = this.state.state;
-      const url = `http://api.wunderground.com/api/47fe8304fc0c9639/forecast/q/${state}/${city}.json`
+      const url = `http://api.wunderground.com/api/47fe8304fc0c9639/forecast/q/${state}/${city}.json`;
       if (!city || !state) {
-        Alert.alert('Error: you must enter both a city and a state.')
-        return
+        Alert.alert('Error: you must enter both a city and a state.');
+        return;
       }
       axios.get(url)
       .then((data: Object): void => {
-        this.setState({ weather: data.data.forecast.txt_forecast.forecastday })
+        this.setState({ weather: data.data.forecast.txt_forecast.forecastday });
       })
-      .then((): void => { this.setState({ showWeatherView: true }) })
-      .then((): void => { AsyncStorage.setItem('city', city) })
-      .then((): void => { AsyncStorage.setItem('state', state) })
-      .then((): void => { this.makeAPICallForCurrentTemp() })
-      .catch((): void => { this.throwBogusDataErrorCity(city, state) })
+      .then((): void => { this.setState({ showWeatherView: true }); })
+      .then((): void => { AsyncStorage.setItem('city', city); })
+      .then((): void => { AsyncStorage.setItem('state', state); })
+      .then((): void => { this.makeAPICallForCurrentTemp(); })
+      .catch((): void => { this.throwBogusDataErrorCity(city, state); });
     }
 
     if (this.state.view === 'us-zip') {
-      const { zip } = this.state
-      const url = `http://api.wunderground.com/api/47fe8304fc0c9639/forecast/q/${zip}.json`
+      const { zip } = this.state;
+      const url = `http://api.wunderground.com/api/47fe8304fc0c9639/forecast/q/${zip}.json`;
       if (!zipCodeIsValid(zip)) {
-        Alert.alert('Error: you must enter a valid five digit US zip code.')
-        return
+        Alert.alert('Error: you must enter a valid five digit US zip code.');
+        return;
       }
       axios.get(url)
       .then((data: Object): void => {
-        this.setState({ weather: data.data.forecast.txt_forecast.forecastday })
+        this.setState({ weather: data.data.forecast.txt_forecast.forecastday });
       })
-      .then((): void => { this.setState({ showWeatherView: true }) })
-      .then((): void => { AsyncStorage.setItem('zip', zip) })
-      .then((): void => { this.makeZipAPICall() })
-      .catch((): void => { this.throwBogusDataErrorZip(zip) })
+      .then((): void => { this.setState({ showWeatherView: true }); })
+      .then((): void => { AsyncStorage.setItem('zip', zip); })
+      .then((): void => { this.makeZipAPICall(); })
+      .catch((): void => { this.throwBogusDataErrorZip(zip); });
     }
   }
 
   clearLocationState = (): void => {
-    this.setState({ location: '' })
+    this.setState({ location: '' });
   }
 
   clearZipState = (): void => {
-    this.setState({ zip: '' })
+    this.setState({ zip: '' });
   }
 
   fillCityAndStateData = (): void => {
     AsyncStorage.getItem('city').then((city: string):void => {
       if (city) {
-        this.setState({ location: capitalize(city) })
+        this.setState({ location: capitalize(city) });
       } else {
-        this.setState({ location: 'Austin' })
+        this.setState({ location: 'Austin' });
       }
-    })
+    });
     AsyncStorage.getItem('state').then((state: string):void => {
       if (state) {
-        this.setState({ state })
+        this.setState({ state });
       } else {
-        this.setState({ state: 'TX' })
+        this.setState({ state: 'TX' });
       }
-    }).then((): void => { this.makeAPICallForCurrentTemp() })
+    }).then((): void => { this.makeAPICallForCurrentTemp(); });
     AsyncStorage.getItem('zip').then((zip: string):void => {
       if (zip) {
-        this.setState({ zip })
+        this.setState({ zip });
       } else {
-        this.setState({ zip: '78745' })
+        this.setState({ zip: '78745' });
       }
-    })
+    });
   }
 
   hideWeatherView = (): void => {
-    this.setState({ showWeatherView: false })
+    this.setState({ showWeatherView: false });
   }
 
   makeAPICallForCurrentTemp = (): void => {
     const city = this.state.location.toLowerCase();
     const state = this.state.state;
-    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${state}/${city}.json`
+    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${state}/${city}.json`;
     axios.get(url)
     .then((data: Object): Object => {
-      const currentTemp = data.data.current_observation.temp_f
-      this.setState({ currentTemp })
-      return data
+      const currentTemp = data.data.current_observation.temp_f;
+      this.setState({ currentTemp });
+      return data;
     })
     .then((data: Object): void => {
-      const { zip } = data.data.current_observation.display_location
-      this.setState({ zip })
+      const { zip } = data.data.current_observation.display_location;
+      this.setState({ zip });
     })
-    .catch((err: string): void => { throw new Error(err) })
+    .catch((err: string): void => { throw new Error(err); });
   }
 
   makeZipAPICall = (): void => {
-    const { zip } = this.state
-    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${zip}.json`
+    const { zip } = this.state;
+    const url = `http://api.wunderground.com/api/47fe8304fc0c9639/conditions/q/${zip}.json`;
     axios.get(url)
     .then((data: Object): Object => {
-      const { city } = data.data.current_observation.display_location
-      const { state } = data.data.current_observation.display_location
-      this.setState({ location: city })
-      this.setState({ state })
-      return { city, state }
+      const { city } = data.data.current_observation.display_location;
+      const { state } = data.data.current_observation.display_location;
+      this.setState({ location: city });
+      this.setState({ state });
+      return { city, state };
     })
     .then((obj): void => {
-      AsyncStorage.setItem('city', obj.city)
-      AsyncStorage.setItem('state', obj.state)
+      AsyncStorage.setItem('city', obj.city);
+      AsyncStorage.setItem('state', obj.state);
     })
-    .then((): void => { this.makeAPICallForCurrentTemp() })
-    .catch((err: string): void => { throw new Error(err) })
+    .then((): void => { this.makeAPICallForCurrentTemp(); })
+    .catch((err: string): void => { throw new Error(err); });
   }
 
   thereIsData = (): boolean => {
-    const { view, location } = this.state
-    let result
+    const { view, location } = this.state;
+    let result;
     if (view === 'us-city-state' && location) {
-      result = true
+      result = true;
     } else {
-      result = false
+      result = false;
     }
-    return result
+    return result;
   }
 
   throwBogusDataErrorCity = (city: string, state: string): void => {
-    Alert.alert(`Error: ${capitalize(city)}, ${state} is not a valid location. Please try again.`)
+    Alert.alert(`Error: ${capitalize(city)}, ${state} is not a valid location. Please try again.`);
   }
 
   throwBogusDataErrorZip = (zip: string): void => {
-    Alert.alert(`Error: ${zip} is not a valid US zip code. Please try again.`)
+    Alert.alert(`Error: ${zip} is not a valid US zip code. Please try again.`);
   }
 
   render() {
-    const { location, state, weather, view, zip, showWeatherView, currentTemp } = this.state
-    let mode
+    const { location, state, weather, view, zip, showWeatherView, currentTemp } = this.state;
+    let mode;
 
     if (view === 'us-city-state') {
       mode = (
@@ -196,7 +196,7 @@ class Main extends Component {
               placeholderTextColor={commonElements.placeholder.color}
               value={location || ''}
               style={styles.locationInput}
-              onChangeText={(text) => { this.setState({ location: text }) }}
+              onChangeText={(text) => { this.setState({ location: text }); }}
             />
             <TouchableOpacity
               onPress={this.clearLocationState}
@@ -208,7 +208,7 @@ class Main extends Component {
           </View>
           <Picker
             selectedValue={state}
-            onValueChange={(choice) => { this.setState({ state: choice }) }}
+            onValueChange={(choice) => { this.setState({ state: choice }); }}
             style={styles.statePicker}
           >
             <Picker.Item label="Alabama" value="AL" />
@@ -264,7 +264,7 @@ class Main extends Component {
             <Picker.Item label="Wyoming" value="WY" />
           </Picker>
         </View>
-      )
+      );
     }
 
     if (view === 'us-zip') {
@@ -278,7 +278,7 @@ class Main extends Component {
               placeholder="Enter Zip"
               placeholderTextColor={commonElements.placeholder.color}
               value={zip}
-              onChangeText={(text) => { this.setState({ zip: text }) }}
+              onChangeText={(text) => { this.setState({ zip: text }); }}
               style={styles.zipInput}
             />
             <TouchableOpacity
@@ -289,7 +289,7 @@ class Main extends Component {
               />
             </TouchableOpacity>
           </View>
-        </View>)
+        </View>);
     }
 
     return (
@@ -308,7 +308,7 @@ class Main extends Component {
           <Picker
             selectedValue={view}
             style={styles.selectModeDropdown}
-            onValueChange={(choice) => { this.setState({ view: choice }) }}
+            onValueChange={(choice) => { this.setState({ view: choice }); }}
           >
             <Picker.Item label="US City and State" value="us-city-state" />
             <Picker.Item label="US Zip Code" value="us-zip" />
@@ -317,7 +317,7 @@ class Main extends Component {
             <Button
               title="Get Weather"
               color={commonElements.button.color}
-              onPress={() => { this.getWeather() }}
+              onPress={() => { this.getWeather(); }}
             />
           </View>
         </View>
@@ -326,7 +326,7 @@ class Main extends Component {
         >
           <Modal
             visible={showWeatherView}
-            onRequestClose={() => { this.hideWeatherView() }}
+            onRequestClose={() => { this.hideWeatherView(); }}
           >
             <WeatherView
               weather={weather}

@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: 'center',
   },
-})
+});
 
-export default styles
+export default styles;

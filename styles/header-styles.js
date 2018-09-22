@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import commonElements from './commonElements'
+import commonElements from './commonElements';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     textAlign: 'center',
   },
-})
+});
 
-export default styles
+export default styles;

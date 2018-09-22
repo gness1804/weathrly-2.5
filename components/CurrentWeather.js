@@ -6,11 +6,11 @@ import {
 } from 'react-native';
 import capitalize from '../helpers/capitalize';
 import styles from '../styles/current-weather-styles';
-import formatTemp from '../helpers/formatTemp'
-import findDegreeStyleCurrent from '../helpers/findDegreeStyleCurrent'
+import formatTemp from '../helpers/formatTemp';
+import findDegreeStyleCurrent from '../helpers/findDegreeStyleCurrent';
 
 const CurrentWeather = ({ ...props }: Object) => {
-  const { currentTemp, location } = props
+  const { currentTemp, location } = props;
   return (
     <View style={styles.container}>
       <Text style={styles.headline}>
@@ -18,7 +18,7 @@ const CurrentWeather = ({ ...props }: Object) => {
       </Text>
       {currentTemp ? <Text style={findDegreeStyleCurrent(currentTemp)}>{formatTemp(currentTemp)} &deg; F</Text> : <Text>Loading...</Text>}
     </View>
-  )
-}
+  );
+};
 
-export default CurrentWeather
+export default CurrentWeather;

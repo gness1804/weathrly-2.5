@@ -1,11 +1,11 @@
 // @flow
 
 const zipCodeIsValid = (zip: string): boolean => {
-  const parsedZip = parseInt(zip, 10)
+  const parsedZip = parseInt(zip, 10);
   if (!parsedZip || typeof parsedZip !== 'number' || zip.length !== 5) {
-    return false
+    return false;
   }
-  return true
-}
+  return true;
+};
 
-export default zipCodeIsValid
+export default zipCodeIsValid;
