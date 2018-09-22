@@ -16,7 +16,10 @@
     "test": "echo 'No tests yet...'",
     "flow": "node_modules/.bin/flow",
     "lint": "eslint .",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "publish": "expo publish",
+    "build:android": "expo build:android",
+    "build:ios": "expo build:ios"
   },
   "jest": {
     "preset": "jest-expo"
