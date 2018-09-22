@@ -10,7 +10,8 @@
       "package": "com.grahamnessler.weathrly"
     },
     "ios": {
-      "bundleIdentifier": "com.grahamnessler.weathrly"
+      "bundleIdentifier": "com.grahamnessler.weathrly",
+      "buildNumber": "2.0.0"
     }
   }
 }
