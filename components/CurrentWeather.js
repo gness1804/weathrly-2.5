@@ -1,6 +1,5 @@
 // @flow
-
-import React, { PropTypes } from 'react';
+import React from 'react';
 import {
   Text,
   View,
@@ -21,10 +20,5 @@ const CurrentWeather = ({ ...props }: Object) => {
     </View>
   )
 }
-
-CurrentWeather.propTypes = {
-  currentTemp: PropTypes.number.isRequired,
-  location: PropTypes.string.isRequired,
-};
 
 export default CurrentWeather

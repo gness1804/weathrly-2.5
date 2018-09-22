@@ -9,10 +9,10 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "flow": "node_modules/.bin/flow",
     "lint": "eslint ."
@@ -28,9 +28,10 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "expo": "^16.0.0",
+    "expo": "^29.0.0",
     "flow-bin": "^0.40.0",
-    "react": "16.0.0-alpha.6",
-    "react-native": "^0.43.4"
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
+    "whatwg-fetch": "^2.0.4"
   }
 }

@@ -1,7 +1,7 @@
 
 {
   "expo": {
-    "sdkVersion": "16.0.0",
+    "sdkVersion": "29.0.0",
     "name": "Weathrly",
     "icon": "images/cloud-sun-snow.png",
     "version": "1.0.0",
