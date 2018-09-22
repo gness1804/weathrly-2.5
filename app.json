@@ -4,13 +4,13 @@
     "sdkVersion": "29.0.0",
     "name": "Weathrly",
     "icon": "images/cloud-sun-snow.png",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "slug": "weathrly",
     "android": {
-      "package": "com.grahamnessler.weathrly",
+      "package": "com.grahamnessler.weathrly"
     },
     "ios": {
-      "bundleIdentifier": "com.grahamnessler.weathrly",
+      "bundleIdentifier": "com.grahamnessler.weathrly"
     }
-  },
+  }
 }
